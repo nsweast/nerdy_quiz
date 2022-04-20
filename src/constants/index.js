@@ -9,4 +9,5 @@ export const ALL_COLORS = {
   lightBlue: '#84ceeb',
   darkBlue: '#5680e9',
   transparentGrey: 'rgba(57, 55, 72, 0.22)',
-}
+  green: '#5cdb95',
+};
