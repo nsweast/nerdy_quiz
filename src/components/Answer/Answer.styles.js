@@ -4,15 +4,20 @@ import { ALL_COLORS } from '../../constants';
 export const AnswerContainer = styled.div`
   background-color: ${ALL_COLORS.purpleGrey};
   display: flex;
-  gap: 3%;
+
+  border-radius: 5px;
 
   align-items: center;
 
   padding: 10px;
 `;
 
-export const AnswerCheckbox = styled.input`
-  transform: scale(1.5);
+export const AnswerInput = styled.input`
+  transform: scale(1.3);
+  margin-right: 10px;
+  cursor: pointer;
 `;
 
-export const AnswerLabel = styled.label``;
+export const AnswerLabel = styled.label`
+  cursor: pointer;
+`;

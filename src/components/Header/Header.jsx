@@ -1,12 +1,16 @@
 import { HeaderStyled, NavLeft, NavRight } from './Header.styles';
 import { HeaderButtonStyled } from './HeaderButton.styles';
 import { ALL_COLORS } from '../../constants';
+import { randomNumber } from '../../helpers';
 
 const Header = () => {
   return (
     <HeaderStyled>
       <NavLeft>
-        <HeaderButtonStyled bg={ALL_COLORS.yellow} to="/play">
+        <HeaderButtonStyled
+          bg={ALL_COLORS.yellow}
+          to={`/play/${randomNumber(9, 18)}`}
+        >
           <strong>I'M LUCKY!</strong>
         </HeaderButtonStyled>
       </NavLeft>

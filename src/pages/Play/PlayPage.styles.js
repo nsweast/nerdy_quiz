@@ -12,6 +12,10 @@ export const PlayPageContainer = styled.section`
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
+
+  border-radius: 10px;
+  box-shadow: 20px 20px 40px ${ALL_COLORS.purpleGrey},
+    -20px -20px 40px ${ALL_COLORS.purpleGrey};
 `;
 
 export const Question = styled.div`
@@ -28,8 +32,6 @@ export const AnswersContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 10px;
-
-  width: 50%;
 `;
 
 export const NextQuestionButton = styled.a`
