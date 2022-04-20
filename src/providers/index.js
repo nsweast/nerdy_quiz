@@ -9,3 +9,9 @@ export const getQuestionsAmount = (id) => {
     .then((response) => response.json())
     .then((data) => data);
 };
+
+export const getRandomTenById = (id) => {
+  return fetch(`https://opentdb.com/api.php?amount=10&category=${id}`)
+    .then((response) => response.json())
+    .then((data) => data);
+};

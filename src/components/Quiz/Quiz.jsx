@@ -19,7 +19,7 @@ const Quiz = ({ category, id }) => {
       <span>
         {!!questionsAmount && questionsAmount} questions in the category
       </span>
-      <PlayQuizButton to="/play_quiz">
+      <PlayQuizButton to={`/play/${id}`}>
         <strong>START QUIZ</strong>
       </PlayQuizButton>
     </QuizBlock>

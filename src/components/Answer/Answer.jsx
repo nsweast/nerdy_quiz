@@ -1,11 +1,15 @@
 import { AnswerCheckbox, AnswerContainer, AnswerLabel } from './Answer.styles';
 
-const Answer = () => {
+const Answer = ({ type, name }) => {
   return (
     //TODO: add label for checkbox id + name
     <AnswerContainer>
-      <AnswerCheckbox type="checkbox" id="ss" name="some" />
-      <AnswerLabel htmlFor="ss">Answer Example</AnswerLabel>
+      <AnswerCheckbox
+        type={type === 'multiple' ? 'checkbox' : 'radio'}
+        id={name}
+        name={name}
+      />
+      <AnswerLabel htmlFor={name}>{name}</AnswerLabel>
     </AnswerContainer>
   );
 };

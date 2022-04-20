@@ -1,1 +1,1 @@
-export { default } from './MyRoutes';
+export { default } from './Router';

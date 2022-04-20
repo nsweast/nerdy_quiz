@@ -4,13 +4,13 @@ import PlayPage from '../pages/Play';
 import MainPage from '../pages/MainPage';
 import NoMatch from '../pages/NoMatch';
 
-const MyRoutes = () => {
+const Router = () => {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<MainPage />}>
           <Route path="home" element={<HomePage />} />
-          <Route path="play_quiz" element={<PlayPage />} />
+          <Route path="play/:quizId" element={<PlayPage />} />
           <Route path="*" element={<NoMatch />} />
         </Route>
       </Routes>
@@ -18,4 +18,4 @@ const MyRoutes = () => {
   );
 };
 
-export default MyRoutes;
+export default Router;

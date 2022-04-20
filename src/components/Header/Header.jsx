@@ -6,7 +6,7 @@ const Header = () => {
   return (
     <HeaderStyled>
       <NavLeft>
-        <HeaderButtonStyled bg={ALL_COLORS.yellow} to="/play_quiz">
+        <HeaderButtonStyled bg={ALL_COLORS.yellow} to="/play">
           <strong>I'M LUCKY!</strong>
         </HeaderButtonStyled>
       </NavLeft>
