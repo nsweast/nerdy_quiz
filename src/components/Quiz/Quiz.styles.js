@@ -1,5 +1,6 @@
 import styled from 'styled-components/macro';
 import { ALL_COLORS } from '../../constants';
+import { Link } from 'react-router-dom';
 
 export const QuizBlock = styled.section`
   width: 18%;
@@ -20,9 +21,11 @@ export const QuizBlock = styled.section`
   }
 `;
 
-//TODO: make it Link
-export const PlayQuizButton = styled.a`
+export const PlayQuizButton = styled(Link)`
   padding: 5px;
   background-color: ${ALL_COLORS.yellow};
   cursor: pointer;
+
+  color: inherit;
+  text-decoration: none;
 `;

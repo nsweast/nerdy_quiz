@@ -1,14 +1,8 @@
-import Header from './components/Header';
-import HomePage from './pages/Home';
-import PlayPage from './pages/Play';
+import MainPage from './pages/MainPage';
+import MyRoutes from './routes';
 
 function App() {
-  return (
-    <>
-      <Header />
-      <PlayPage />
-    </>
-  );
+  return <MyRoutes />;
 }
 
 export default App;
