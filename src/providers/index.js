@@ -11,7 +11,9 @@ export const getTotalAmount = (id) => {
 };
 
 export const getRandomTenById = (id) => {
-  return fetch(`https://opentdb.com/api.php?amount=10&category=${id}`)
+  return fetch(
+    `https://opentdb.com/api.php?amount=10&encode=url3986&category=${id}`
+  )
     .then((response) => response.json())
     .then((data) => data);
 };

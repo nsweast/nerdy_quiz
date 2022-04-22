@@ -5,20 +5,14 @@ const Answer = ({ type, name, question }) => {
     return (
       <AnswerContainer>
         <AnswerInput type="checkbox" id={name} name={name} />
-        <AnswerLabel
-          htmlFor={name}
-          dangerouslySetInnerHTML={{ __html: name }}
-        />
+        <AnswerLabel htmlFor={name}>{decodeURIComponent(name)}</AnswerLabel>
       </AnswerContainer>
     );
   } else {
     return (
       <AnswerContainer>
         <AnswerInput type="radio" id={name} name={question} value={name} />
-        <AnswerLabel
-          htmlFor={name}
-          dangerouslySetInnerHTML={{ __html: name }}
-        />
+        <AnswerLabel htmlFor={name}>{decodeURIComponent(name)}</AnswerLabel>
       </AnswerContainer>
     );
   }

@@ -45,7 +45,7 @@ const PlayPage = () => {
 
   return (
     <PlayPageContainer>
-      <Question dangerouslySetInnerHTML={{ __html: question }}>{}</Question>
+      <Question>{decodeURIComponent(question)}</Question>
       <AnswersContainer>
         {answersArray.map((answer) => (
           <Answer type={type} name={answer} key={answer} question={question} />
