@@ -7,31 +7,33 @@ import {
 import Answer from '../../components/Answer';
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { getRandomTenById } from '../../providers';
 import Loading from '../../components/common/Loading';
 import { shuffleArray } from '../../helpers';
+import { getRandomTenById } from '../../providers';
 
 const PlayPage = () => {
-  const [quizInfo, setQuizInfo] = useState({ info: [], isLoaded: false });
+  const [quizInfo, setQuizInfo] = useState([]);
+  const [isLoaded, setIsLoaded] = useState(false);
   const [index, setIndex] = useState(0);
 
   const params = useParams();
 
   useEffect(() => {
-    getRandomTenById(params.quizId).then((data) =>
-      setQuizInfo({ info: data.results, isLoaded: true })
-    );
+    getRandomTenById(params.quizId).then((data) => {
+      setQuizInfo(data);
+      setIsLoaded(true);
+    });
   }, [params.quizId]);
 
   const next = () => {
-    if (index < quizInfo.info.length - 1) {
+    if (index < quizInfo.length - 1) {
       setIndex(index + 1);
     } else {
-      setIndex(quizInfo.info.length - 1);
+      setIndex(quizInfo.length - 1);
     }
   };
 
-  if (!quizInfo.isLoaded) {
+  if (!isLoaded) {
     return (
       <PlayPageContainer>
         <Loading />
@@ -39,13 +41,12 @@ const PlayPage = () => {
     );
   }
 
-  const { question, correct_answer, incorrect_answers, type } =
-    quizInfo.info[index];
+  const { question, correct_answer, incorrect_answers, type } = quizInfo[index];
   const answersArray = shuffleArray([correct_answer, ...incorrect_answers]);
 
   return (
     <PlayPageContainer>
-      <Question>{decodeURIComponent(question)}</Question>
+      <Question>{question}</Question>
       <AnswersContainer>
         {answersArray.map((answer) => (
           <Answer type={type} name={answer} key={answer} question={question} />

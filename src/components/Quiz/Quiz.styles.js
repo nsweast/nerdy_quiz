@@ -21,7 +21,7 @@ export const QuizBlock = styled.section`
   }
 `;
 
-export const PlayQuizButton = styled(Link)`
+export const PlayQuizLink = styled(Link)`
   padding: 5px;
   background-color: ${ALL_COLORS.yellow};
   cursor: pointer;

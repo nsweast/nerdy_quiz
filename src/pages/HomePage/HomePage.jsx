@@ -1,16 +1,14 @@
 import { HomeContainer } from './HomePage.styles';
 import Quiz from '../../components/Quiz';
-import { getCategories, getTotalAmount } from '../../providers';
 import { useEffect, useState } from 'react';
-
 import Loading from '../../components/common/Loading';
 import { shuffleArray } from '../../helpers';
+import { getCategories, getTotalAmount } from '../../providers/';
 
 const HomePage = () => {
   const [categories, setCategories] = useState([]);
   const [loaded, setLoaded] = useState(false);
 
-  //TODO: why so long?
   useEffect(() => {
     getCategories()
       .then((categories) => shuffleArray(categories).slice(0, 10))
@@ -23,8 +21,10 @@ const HomePage = () => {
         })
       )
       .then((promises) => Promise.all(promises))
-      .then((info) => setCategories(info))
-      .then(() => setLoaded(true));
+      .then((info) => {
+        setCategories(info);
+        setLoaded(true);
+      });
   }, []);
 
   if (!loaded) {
