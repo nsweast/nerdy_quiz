@@ -5,14 +5,20 @@ const Answer = ({ type, name, question }) => {
     return (
       <AnswerContainer>
         <AnswerInput type="checkbox" id={name} name={name} />
-        <AnswerLabel htmlFor={name}>{name}</AnswerLabel>
+        <AnswerLabel
+          htmlFor={name}
+          dangerouslySetInnerHTML={{ __html: name }}
+        />
       </AnswerContainer>
     );
   } else {
     return (
       <AnswerContainer>
         <AnswerInput type="radio" id={name} name={question} value={name} />
-        <AnswerLabel htmlFor={name}>{name}</AnswerLabel>
+        <AnswerLabel
+          htmlFor={name}
+          dangerouslySetInnerHTML={{ __html: name }}
+        />
       </AnswerContainer>
     );
   }

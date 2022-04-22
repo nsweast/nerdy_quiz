@@ -41,12 +41,13 @@ const PlayPage = () => {
 
   const { question, correct_answer, incorrect_answers, type } =
     quizInfo.info[index];
+  const answersArray = shuffleArray([correct_answer, ...incorrect_answers]);
 
   return (
     <PlayPageContainer>
-      <Question>{question}</Question>
+      <Question dangerouslySetInnerHTML={{ __html: question }}>{}</Question>
       <AnswersContainer>
-        {shuffleArray([correct_answer, ...incorrect_answers]).map((answer) => (
+        {answersArray.map((answer) => (
           <Answer type={type} name={answer} key={answer} question={question} />
         ))}
       </AnswersContainer>

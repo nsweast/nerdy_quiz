@@ -10,6 +10,7 @@ const HomePage = () => {
   const [categories, setCategories] = useState([]);
   const [loaded, setLoaded] = useState(false);
 
+  //TODO: why so long?
   useEffect(() => {
     getCategories()
       .then((categories) => shuffleArray(categories).slice(0, 10))
