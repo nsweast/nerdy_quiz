@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import HomePage from '../pages/Home';
-import PlayPage from '../pages/Play';
+import HomePage from '../pages/HomePage';
+import PlayPage from '../pages/PlayPage';
 import MainPage from '../pages/MainPage';
 import NoMatch from '../pages/NoMatch';
 
@@ -9,7 +9,7 @@ const Router = () => {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<MainPage />}>
-          <Route path="home" element={<HomePage />} />
+          <Route index element={<HomePage />} />
           <Route path="play/:quizId" element={<PlayPage />} />
           <Route path="*" element={<NoMatch />} />
         </Route>

@@ -1,24 +1,10 @@
 import { PlayQuizButton, QuizBlock } from './Quiz.styles';
-import { useState } from 'react';
-import { useEffect } from 'react';
-import { getQuestionsAmount } from '../../providers';
 
-const Quiz = ({ category, id }) => {
-  const [questionsAmount, setQuestionsAmount] = useState(0);
-
-  useEffect(() => {
-    getQuestionsAmount(id).then((data) =>
-      setQuestionsAmount(data.category_question_count.total_question_count)
-    );
-  }, []);
-
-  //TODO: render only when they are fetched
+const Quiz = ({ category, id, amount }) => {
   return (
     <QuizBlock>
       <h4>{category}</h4>
-      <span>
-        {!!questionsAmount && questionsAmount} questions in the category
-      </span>
+      <span>{amount} questions in the category</span>
       <PlayQuizButton to={`/play/${id}`}>
         <strong>START QUIZ</strong>
       </PlayQuizButton>
