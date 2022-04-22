@@ -15,11 +15,7 @@ const Header = () => {
         </HeaderButtonStyled>
       </NavLeft>
       <NavRight>
-        <HeaderButtonStyled
-          bg={ALL_COLORS.purple}
-          fg={ALL_COLORS.white}
-          to="/home"
-        >
+        <HeaderButtonStyled bg={ALL_COLORS.purple} fg={ALL_COLORS.white} to="/">
           <strong>HISTORY</strong>
         </HeaderButtonStyled>
       </NavRight>

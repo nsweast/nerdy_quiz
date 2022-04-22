@@ -1,13 +1,13 @@
 export const getCategories = () => {
   return fetch('https://opentdb.com/api_category.php')
     .then((request) => request.json())
-    .then((data) => data);
+    .then((data) => data.trivia_categories);
 };
 
-export const getQuestionsAmount = (id) => {
+export const getTotalAmount = (id) => {
   return fetch(`https://opentdb.com/api_count.php?category=${id}`)
     .then((response) => response.json())
-    .then((data) => data);
+    .then((data) => data.category_question_count.total_question_count);
 };
 
 export const getRandomTenById = (id) => {
