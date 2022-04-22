@@ -1,7 +1,4 @@
 import { PlayQuizButton, QuizBlock } from './Quiz.styles';
-import { useState } from 'react';
-import { useEffect } from 'react';
-import { getTotalAmount } from '../../providers';
 
 const Quiz = ({ category, id, amount }) => {
   return (

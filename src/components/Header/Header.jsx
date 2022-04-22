@@ -1,5 +1,9 @@
-import { HeaderStyled, NavLeft, NavRight } from './Header.styles';
-import { HeaderButtonStyled } from './HeaderButton.styles';
+import {
+  HeaderButtonStyled,
+  HeaderStyled,
+  NavLeft,
+  NavRight,
+} from './Header.styles';
 import { ALL_COLORS } from '../../constants';
 import { randomNumber } from '../../helpers';
 
