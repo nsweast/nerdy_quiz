@@ -1,1 +1,6 @@
-export { getCategories, getTotalAmount, getRandomTenById } from './providers';
+export {
+  getCategories,
+  getQuestionsAmountById,
+  getQuestionsAmountTotal,
+  getTenQuestionsById,
+} from './providers';

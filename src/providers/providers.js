@@ -5,12 +5,19 @@ export const getCategories = () => {
     .then((request) => request.json())
     .then((data) => data.trivia_categories);
 };
-export const getTotalAmount = (id) => {
+export const getQuestionsAmountById = (id) => {
   return fetch(`https://opentdb.com/api_count.php?category=${id}`)
     .then((response) => response.json())
     .then((data) => data.category_question_count.total_question_count);
 };
-export const getRandomTenById = (id) => {
+
+export const getQuestionsAmountTotal = () => {
+  return fetch('https://opentdb.com/api_count_global.php')
+    .then((response) => response.json())
+    .then((data) => data.categories);
+};
+
+export const getTenQuestionsById = (id) => {
   return fetch(
     `https://opentdb.com/api.php?amount=10&encode=url3986&category=${id}`
   )

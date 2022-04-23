@@ -3,7 +3,11 @@ import Quiz from '../../components/Quiz';
 import { useEffect, useState } from 'react';
 import Loading from '../../components/common/Loading';
 import { shuffleArray } from '../../helpers';
-import { getCategories, getTotalAmount } from '../../providers/';
+import {
+  getCategories,
+  getQuestionsAmountById,
+  getQuestionsAmountTotal,
+} from '../../providers/';
 
 const HomePage = () => {
   const [categories, setCategories] = useState([]);
@@ -12,17 +16,18 @@ const HomePage = () => {
   useEffect(() => {
     getCategories()
       .then((categories) => shuffleArray(categories).slice(0, 10))
-      .then((randomTen) =>
-        randomTen.map(async (category) => {
-          return {
-            ...category,
-            amount: await getTotalAmount(category.id),
-          };
-        })
-      )
-      .then((promises) => Promise.all(promises))
-      .then((info) => {
-        setCategories(info);
+      .then((randomTen) => {
+        return getQuestionsAmountTotal().then((questions) => {
+          return randomTen.map((category) => {
+            return {
+              ...category,
+              amount: questions[category.id].total_num_of_verified_questions,
+            };
+          });
+        });
+      })
+      .then((categories) => {
+        setCategories(categories);
         setLoaded(true);
       });
   }, []);
