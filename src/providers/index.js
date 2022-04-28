@@ -3,4 +3,4 @@ export {
   getQuestionsAmountById,
   getQuestionsAmountTotal,
   getTenQuestionsById,
-} from './providers';
+} from './quizProvider';
