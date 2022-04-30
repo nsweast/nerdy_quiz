@@ -1,1 +1,1 @@
-export { shuffleArray, randomNumber, parser } from './helpers';
+export { shuffleArray, randomNumber } from './helpers';

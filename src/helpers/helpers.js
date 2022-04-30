@@ -8,17 +8,3 @@ export const shuffleArray = (array) => {
     .sort((a, b) => a.sort - b.sort)
     .map(({ value }) => value);
 };
-
-export const parser = (array) => {
-  return array.map((element) => {
-    return {
-      ...element,
-      category: decodeURIComponent(element.category),
-      question: decodeURIComponent(element.question),
-      correct_answer: decodeURIComponent(element.correct_answer),
-      incorrect_answers: element.incorrect_answers.map((answer) =>
-        decodeURIComponent(answer)
-      ),
-    };
-  });
-};

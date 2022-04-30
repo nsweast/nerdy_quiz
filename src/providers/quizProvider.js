@@ -1,59 +1,45 @@
-import { parser } from '../helpers/';
-
-// export const getCategories = () => {
-//   return fetch('https://opentdb.com/api_category.php')
-//     .then((request) => request.json())
-//     .then((data) => data.trivia_categories);
-// };
-// export const getQuestionsAmountById = (id) => {
-//   return fetch(`https://opentdb.com/api_count.php?category=${id}`)
-//     .then((response) => response.json())
-//     .then((data) => data.category_question_count.total_question_count);
-// };
-//
-// export const getQuestionsAmountTotal = () => {
-//   return fetch('https://opentdb.com/api_count_global.php')
-//     .then((response) => response.json())
-//     .then((data) => data.categories);
-// };
-//
-// export const getTenQuestionsById = (id) => {
-//   return fetch(
-//     `https://opentdb.com/api.php?amount=10&encode=url3986&category=${id}`
-//   )
-//     .then((response) => response.json())
-//     .then((data) => parser(data.results));
-// };
-
 class Categories {
-  getCategories() {
-    // get data
-  }
+  getCategories = () => {
+    return fetch('https://opentdb.com/api_category.php')
+      .then((request) => request.json())
+      .then((data) => data.trivia_categories);
+  };
 }
 
 class Questions {
-  parse(response) {
-    // convert data
-    const data = response;
-    return data;
-  }
+  getQuestionsAmountById = (id) => {
+    return fetch(`https://opentdb.com/api_count.php?category=${id}`)
+      .then((response) => response.json())
+      .then((data) => data.category_question_count.total_question_count);
+  };
 
-  serialize(data) {
-    // modify data
-    return data;
-  }
+  getQuestionsAmountTotal = () => {
+    return fetch('https://opentdb.com/api_count_global.php')
+      .then((response) => response.json())
+      .then((data) => data.categories);
+  };
 
-  async getQuestions() {
-    const response = await fetch('get_questions');
-    const data = await response.json();
+  getTenQuestionsById = (id) => {
+    return fetch(
+      `https://opentdb.com/api.php?amount=10&encode=url3986&category=${id}`
+    )
+      .then((response) => response.json())
+      .then((data) => this.parser(data.results));
+  };
 
-    return this.parse(data);
-  }
-
-  async postQuestion(data) {
-    const body = this.serialize(data);
-    await fetch('post_question', { method: 'POST', body });
-  }
+  parser = (array) => {
+    return array.map((element) => {
+      return {
+        ...element,
+        category: decodeURIComponent(element.category),
+        question: decodeURIComponent(element.question),
+        correct_answer: decodeURIComponent(element.correct_answer),
+        incorrect_answers: element.incorrect_answers.map((answer) =>
+          decodeURIComponent(answer)
+        ),
+      };
+    });
+  };
 }
 
 class QuizProvider {
@@ -64,6 +50,3 @@ class QuizProvider {
 const quizProvider = new QuizProvider();
 
 export default quizProvider;
-
-const categories = quizProvider.categories.getCategories();
-const questions = quizProvider.questions.getQuestions();

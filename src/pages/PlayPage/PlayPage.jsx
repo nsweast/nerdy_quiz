@@ -9,7 +9,7 @@ import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import Loading from '../../components/common/Loading';
 import { shuffleArray } from '../../helpers';
-import { getTenQuestionsById } from '../../providers';
+import quizProvider from '../../providers';
 
 const PlayPage = () => {
   const [quizInfo, setQuizInfo] = useState([]);
@@ -19,7 +19,7 @@ const PlayPage = () => {
   const params = useParams();
 
   useEffect(() => {
-    getTenQuestionsById(params.quizId).then((data) => {
+    quizProvider.questions.getTenQuestionsById(params.quizId).then((data) => {
       setQuizInfo(data);
       setIsLoaded(true);
     });
