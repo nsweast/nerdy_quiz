@@ -1,1 +1,1 @@
-export { default } from './QuizContext';
+export { default, QuizContext } from './QuizContext';

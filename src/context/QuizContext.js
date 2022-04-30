@@ -1,13 +1,46 @@
-import { createContext, useContext } from 'react';
+import { createContext, useContext, useEffect } from 'react';
 import Router from '../routes';
+import { useState } from 'react';
 
-const QuizContext = createContext();
+export const QuizContext = createContext();
 
 const QuizContextProvider = () => {
-  useContext(QuizContext);
+  const [userAnswers, setUserAnswers] = useState([]);
+
+  useEffect(() => {
+    console.log(userAnswers);
+  }, [userAnswers]);
+
+  const selectAnswer = (event, question) => {
+    const existAnswer = userAnswers.find(
+      (answer) => answer.question === question
+    );
+
+    if (existAnswer) {
+      setUserAnswers(
+        userAnswers.map((answer) => ({
+          ...answer,
+          userAnswer:
+            answer.question === question
+              ? event.target.value
+              : answer.userAnswer,
+        }))
+      );
+    } else {
+      setUserAnswers((prevAnswers) => [
+        ...prevAnswers,
+        {
+          question: question,
+          userAnswer: event.target.value,
+        },
+      ]);
+    }
+  };
 
   return (
-    <QuizContext.Provider>
+    <QuizContext.Provider
+      value={{ userAnswers: userAnswers, selectAnswer: selectAnswer }}
+    >
       <Router />
     </QuizContext.Provider>
   );
