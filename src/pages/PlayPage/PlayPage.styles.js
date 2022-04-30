@@ -34,15 +34,18 @@ export const AnswersContainer = styled.div`
   gap: 10px;
 `;
 
-export const NextQuestionButton = styled.a`
+export const NextQuestionButton = styled.div`
   padding: 15px;
 
   display: flex;
   justify-content: center;
   align-items: center;
 
-  color: ${ALL_COLORS.white};
-  background-color: ${ALL_COLORS.green};
+  user-select: none;
 
-  cursor: pointer;
+  color: ${ALL_COLORS.white};
+  background-color: ${(props) =>
+    !props.active ? ALL_COLORS.grey : ALL_COLORS.green};
+
+  cursor: ${(props) => (props.active ? 'pointer' : 'default')};
 `;

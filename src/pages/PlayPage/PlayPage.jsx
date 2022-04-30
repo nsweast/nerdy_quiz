@@ -12,28 +12,75 @@ import { shuffleArray } from '../../helpers';
 import quizProvider from '../../providers';
 
 const PlayPage = () => {
-  const [quizInfo, setQuizInfo] = useState([]);
-  const [isLoaded, setIsLoaded] = useState(false);
+  const [questions, setQuestions] = useState([]);
+  const [loaded, setLoaded] = useState(false);
   const [index, setIndex] = useState(0);
+  const [userAnswers, setUserAnswers] = useState([]);
 
   const params = useParams();
 
   useEffect(() => {
-    quizProvider.questions.getTenQuestionsById(params.quizId).then((data) => {
-      setQuizInfo(data);
-      setIsLoaded(true);
-    });
-  }, [params.quizId]);
+    quizProvider.questions
+      .getTenQuestionsById(params.quizId)
+      .then((questions) =>
+        questions.map((question) => ({
+          ...question,
+          allAnswers: shuffleArray([
+            question.correct_answer,
+            ...question.incorrect_answers,
+          ]),
+        }))
+      )
+      .then((questions) => {
+        setQuestions(questions);
+        setLoaded(true);
+        console.log(questions);
+      });
 
-  const next = () => {
-    if (index < quizInfo.length - 1) {
-      setIndex(index + 1);
+    console.log('i updated');
+  }, [params]);
+
+  const selectAnswer = (event, question) => {
+    const existAnswer = userAnswers.find(
+      (answer) => answer.question === question
+    );
+
+    if (existAnswer) {
+      setUserAnswers(
+        userAnswers.map((answer) => ({
+          ...answer,
+          userAnswer:
+            answer.question === question
+              ? event.target.value
+              : answer.userAnswer,
+        }))
+      );
     } else {
-      setIndex(quizInfo.length - 1);
+      setUserAnswers((prevAnswers) => [
+        ...prevAnswers,
+        {
+          question: question,
+          userAnswer: event.target.value,
+        },
+      ]);
     }
   };
 
-  if (!isLoaded) {
+  const answerSet = (question) => {
+    return userAnswers.find((answer) => answer.question === question);
+  };
+
+  const nextQuestion = () => {
+    if (index < questions.length - 1) {
+      setIndex(index + 1);
+    } else {
+      setIndex(questions.length - 1);
+    }
+
+    console.log(userAnswers);
+  };
+
+  if (!loaded) {
     return (
       <PlayPageContainer>
         <Loading />
@@ -41,18 +88,24 @@ const PlayPage = () => {
     );
   }
 
-  const { question, correct_answer, incorrect_answers, type } = quizInfo[index];
-  const answersArray = shuffleArray([correct_answer, ...incorrect_answers]);
-
+  const { question, allAnswers } = questions[index];
   return (
     <PlayPageContainer>
       <Question>{question}</Question>
       <AnswersContainer>
-        {answersArray.map((answer) => (
-          <Answer type={type} name={answer} key={answer} question={question} />
+        {allAnswers.map((answer) => (
+          <Answer
+            name={answer}
+            key={answer}
+            question={question}
+            onClick={(event) => selectAnswer(event, question)}
+          />
         ))}
       </AnswersContainer>
-      <NextQuestionButton onClick={next}>
+      <NextQuestionButton
+        onClick={answerSet(question) && nextQuestion}
+        active={answerSet(question)}
+      >
         <b>NEXT QUESTION</b>
       </NextQuestionButton>
     </PlayPageContainer>
