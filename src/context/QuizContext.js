@@ -7,7 +7,7 @@ export const QuizContext = createContext();
 const QuizContextProvider = () => {
   const [userAnswers, setUserAnswers] = useState([]);
 
-  let u;
+  let u = 'ok';
 
   useEffect(() => {
     console.log(userAnswers);
