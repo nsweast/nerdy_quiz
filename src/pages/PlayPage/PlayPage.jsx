@@ -6,13 +6,13 @@ import {
 import Answer from '../../components/Answer';
 import { useParams } from 'react-router-dom';
 import { useContext, useEffect, useState } from 'react';
-import Loading from '../../components/common/Loading';
+import Loading from '../../components/Loading';
 import { shuffleArray } from '../../helpers';
 import quizProvider from '../../providers';
 import { QuizContext } from '../../context';
 import NextButton from '../../components/NextButton';
 
-const PlayPage = ({ category }) => {
+const PlayPage = () => {
   const context = useContext(QuizContext);
 
   const [questions, setQuestions] = useState([]);
@@ -59,7 +59,7 @@ const PlayPage = ({ category }) => {
     );
   }
 
-  const { question, allAnswers } = questions[index];
+  const { question, allAnswers, correct_answer, category } = questions[index];
   return (
     <PlayPageContainer>
       <Question>{question}</Question>
@@ -69,7 +69,9 @@ const PlayPage = ({ category }) => {
             name={answer}
             key={answer}
             question={question}
-            onClick={(event) => context.selectAnswer(event, question)}
+            onClick={(event) =>
+              context.selectAnswer(event, question, correct_answer, category)
+            }
           />
         ))}
       </AnswersContainer>

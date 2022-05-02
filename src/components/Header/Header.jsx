@@ -1,27 +1,18 @@
-import {
-  HeaderButtonStyled,
-  HeaderStyled,
-  NavLeft,
-  NavRight,
-} from './Header.styles';
-import { ALL_COLORS } from '../../constants';
-import { randomNumber } from '../../helpers';
+import { HeaderStyled, NavLeft, NavRight } from './Header.styles';
+import HeaderLink from '../HeaderButton';
+import { useParams } from 'react-router-dom';
+import { isObjectEmpty } from '../../helpers';
 
 const Header = () => {
+  const params = useParams();
+
   return (
     <HeaderStyled>
       <NavLeft>
-        <HeaderButtonStyled
-          bg={ALL_COLORS.yellow}
-          to={`/play/${randomNumber(9, 18)}`}
-        >
-          <strong>I'M LUCKY!</strong>
-        </HeaderButtonStyled>
+        <HeaderLink type={isObjectEmpty(params) ? 'lucky' : 'cancel'} />
       </NavLeft>
       <NavRight>
-        <HeaderButtonStyled bg={ALL_COLORS.purple} fg={ALL_COLORS.white} to="/">
-          <strong>HISTORY</strong>
-        </HeaderButtonStyled>
+        <HeaderLink type={isObjectEmpty(params) ? 'history' : null} />
       </NavRight>
     </HeaderStyled>
   );

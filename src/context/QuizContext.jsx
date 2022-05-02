@@ -9,27 +9,32 @@ const QuizContextProvider = () => {
 
   useEffect(() => console.log(userAnswers), [userAnswers]);
 
-  const selectAnswer = (event, question) => {
+  const selectAnswer = (event, question, correct, category) => {
     const existAnswer = userAnswers.find(
       (answer) => answer.question === question
     );
 
     if (existAnswer) {
       setUserAnswers(
-        userAnswers.map((answer) => ({
-          ...answer,
-          userAnswer:
-            answer.question === question
-              ? event.target.value
-              : answer.userAnswer,
-        }))
+        userAnswers.map((answer) => {
+          if (answer.question === question) {
+            return {
+              ...answer,
+              userAnswer: event.target.value,
+            };
+          } else {
+            return { ...answer };
+          }
+        })
       );
     } else {
       setUserAnswers((prevAnswers) => [
         ...prevAnswers,
         {
           question: question,
+          category: category,
           userAnswer: event.target.value,
+          correctAnswer: correct,
         },
       ]);
     }

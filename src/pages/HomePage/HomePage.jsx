@@ -1,7 +1,7 @@
 import { HomeContainer } from './HomePage.styles';
 import Quiz from '../../components/Quiz';
 import { useEffect, useState } from 'react';
-import Loading from '../../components/common/Loading';
+import Loading from '../../components/Loading';
 import { shuffleArray } from '../../helpers';
 import quizProvider from '../../providers/';
 

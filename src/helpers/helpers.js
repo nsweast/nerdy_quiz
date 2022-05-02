@@ -8,3 +8,7 @@ export const shuffleArray = (array) => {
     .sort((a, b) => a.sort - b.sort)
     .map(({ value }) => value);
 };
+
+export const isObjectEmpty = (object) => {
+  return Object.keys(object).length === 0;
+};

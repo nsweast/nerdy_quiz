@@ -10,4 +10,5 @@ export const ALL_COLORS = {
   darkBlue: '#5680e9',
   transparentGrey: 'rgba(57, 55, 72, 0.22)',
   green: '#5cdb95',
+  red: '#a91b0d',
 };
