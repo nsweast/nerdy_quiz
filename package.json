@@ -20,7 +20,7 @@
     "eject": "react-scripts eject",
     "prepare": "husky install",
     "pretest": "./node_modules/.bin/eslint/ --ignore-path .gitignore . --fix",
-    "lint": "eslint \"**/*.js\" --max-warnings=0"
+    "lint": "eslint \"**/*.js\" --max-warnings 0"
   },
   "eslintConfig": {
     "extends": [
@@ -47,7 +47,7 @@
     "prettier": "^2.6.0"
   },
   "lint-staged": {
-    "**/*.{js,jsx,ts,tsx}": ["npx eslint .", "prettier --write"]
+    "**/*.{js,jsx,ts,tsx}": ["npx eslint", "prettier --write"]
   },
   "husky": {
     "hooks": {
