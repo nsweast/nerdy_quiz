@@ -1,5 +1,4 @@
 import {
-  NextQuestionButton,
   PlayPageContainer,
   Question,
   AnswersContainer,
@@ -11,8 +10,9 @@ import Loading from '../../components/common/Loading';
 import { shuffleArray } from '../../helpers';
 import quizProvider from '../../providers';
 import { QuizContext } from '../../context';
+import NextButton from '../../components/NextButton';
 
-const PlayPage = () => {
+const PlayPage = ({ category }) => {
   const context = useContext(QuizContext);
 
   const [questions, setQuestions] = useState([]);
@@ -37,12 +37,10 @@ const PlayPage = () => {
         setQuestions(questions);
         setLoaded(true);
       });
-  }, [params]);
+  }, [params.quizId]);
 
   const answerSet = (question) => {
-    console.log(
-      context.userAnswers.find((answer) => answer.question === question)
-    );
+    return context.userAnswers.find((answer) => answer.question === question);
   };
 
   const nextQuestion = () => {
@@ -75,12 +73,12 @@ const PlayPage = () => {
           />
         ))}
       </AnswersContainer>
-      <NextQuestionButton
-        onClick={() => answerSet(question)}
+      <NextButton
+        onClick={answerSet(question) && nextQuestion}
         active={answerSet(question)}
-      >
-        <b>NEXT QUESTION</b>
-      </NextQuestionButton>
+        index={index}
+        questions={questions}
+      />
     </PlayPageContainer>
   );
 };

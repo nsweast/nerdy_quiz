@@ -3,6 +3,7 @@ import HomePage from '../pages/HomePage';
 import PlayPage from '../pages/PlayPage';
 import MainPage from '../pages/MainPage';
 import NoMatch from '../pages/NoMatch';
+import ResultPage from '../pages/ResultPage';
 
 const Router = () => {
   return (
@@ -11,6 +12,7 @@ const Router = () => {
         <Route path="/" element={<MainPage />}>
           <Route index element={<HomePage />} />
           <Route path="play/:quizId" element={<PlayPage />} />
+          <Route path="result" element={<ResultPage />} />
           <Route path="*" element={<NoMatch />} />
         </Route>
       </Routes>
