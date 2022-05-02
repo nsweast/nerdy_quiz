@@ -40,7 +40,9 @@ const PlayPage = () => {
   }, [params]);
 
   const answerSet = (question) => {
-    context.userAnswers.find((answer) => answer.question === question);
+    console.log(
+      context.userAnswers.find((answer) => answer.question === question)
+    );
   };
 
   const nextQuestion = () => {
@@ -74,7 +76,7 @@ const PlayPage = () => {
         ))}
       </AnswersContainer>
       <NextQuestionButton
-        onClick={answerSet(question) && nextQuestion}
+        onClick={() => answerSet(question)}
         active={answerSet(question)}
       >
         <b>NEXT QUESTION</b>
