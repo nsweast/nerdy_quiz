@@ -46,8 +46,7 @@
     "prettier": "^2.6.0"
   },
   "lint-staged": {
-    "*.{js,css,md}": "prettier --write",
-    "*.js": ["./node_modules/.bin/eslint — fix", "git add"]
+    "*.{js,css,md}": ["./node_modules/.bin/eslint — fix", "git add", "prettier --write"]
   },
   "husky": {
     "hooks": {
