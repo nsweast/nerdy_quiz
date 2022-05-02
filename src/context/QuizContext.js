@@ -1,4 +1,4 @@
-import { createContext, use, useEffect } from 'react';
+import { createContext, useEffect } from 'react';
 import Router from '../routes';
 import { useState } from 'react';
 
@@ -6,8 +6,6 @@ export const QuizContext = createContext();
 
 const QuizContextProvider = () => {
   const [userAnswers, setUserAnswers] = useState([]);
-
-  let u = 'ok';
 
   useEffect(() => {
     console.log(userAnswers);
