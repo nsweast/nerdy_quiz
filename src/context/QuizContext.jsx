@@ -5,18 +5,18 @@ import { useState } from 'react';
 export const QuizContext = createContext();
 
 const QuizContextProvider = () => {
-  const [userAnswers, setUserAnswers] = useState([]);
+  const [currentUserAnswers, setCurrentUserAnswers] = useState([]);
 
-  useEffect(() => console.log(userAnswers), [userAnswers]);
+  useEffect(() => console.log(currentUserAnswers), [currentUserAnswers]);
 
   const selectAnswer = (event, question, correct, category) => {
-    const existAnswer = userAnswers.find(
+    const existAnswer = currentUserAnswers.find(
       (answer) => answer.question === question
     );
 
     if (existAnswer) {
-      setUserAnswers(
-        userAnswers.map((answer) => {
+      setCurrentUserAnswers(
+        currentUserAnswers.map((answer) => {
           if (answer.question === question) {
             return {
               ...answer,
@@ -28,7 +28,7 @@ const QuizContextProvider = () => {
         })
       );
     } else {
-      setUserAnswers((prevAnswers) => [
+      setCurrentUserAnswers((prevAnswers) => [
         ...prevAnswers,
         {
           question: question,
@@ -40,9 +40,17 @@ const QuizContextProvider = () => {
     }
   };
 
+  const clearCurrentSession = () => {
+    setCurrentUserAnswers([]);
+  };
+
   return (
     <QuizContext.Provider
-      value={{ userAnswers: userAnswers, selectAnswer: selectAnswer }}
+      value={{
+        userAnswers: currentUserAnswers,
+        selectAnswer: selectAnswer,
+        clearCurrentSession: clearCurrentSession,
+      }}
     >
       <Router />
     </QuizContext.Provider>

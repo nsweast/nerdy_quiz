@@ -12,7 +12,7 @@ const Router = () => {
         <Route path="/" element={<MainPage />}>
           <Route index element={<HomePage />} />
           <Route path="play/:quizId" element={<PlayPage />} />
-          <Route path="result" element={<ResultPage />} />
+          <Route path="result/:quizId" element={<ResultPage />} />
           <Route path="*" element={<NoMatch />} />
         </Route>
       </Routes>

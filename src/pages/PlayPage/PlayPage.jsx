@@ -11,6 +11,7 @@ import { shuffleArray } from '../../helpers';
 import quizProvider from '../../providers';
 import { QuizContext } from '../../context';
 import NextButton from '../../components/NextButton';
+import Timer from '../../components/Timer';
 
 const PlayPage = () => {
   const context = useContext(QuizContext);
@@ -80,7 +81,9 @@ const PlayPage = () => {
         active={answerSet(question)}
         index={index}
         questions={questions}
+        quizId={params.quizId}
       />
+      <Timer />
     </PlayPageContainer>
   );
 };

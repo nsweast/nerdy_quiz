@@ -5,7 +5,9 @@ import { Link } from 'react-router-dom';
 export const QuizBlock = styled.section`
   width: 18%;
   height: 300px;
-  background-color: white;
+  background-color: ${ALL_COLORS.lightBlue};
+  box-shadow: 5px 5px 30px ${ALL_COLORS.purpleGrey},
+    -5px -5px 30px ${ALL_COLORS.purpleGrey};
 
   margin-bottom: 20px;
 
@@ -15,17 +17,20 @@ export const QuizBlock = styled.section`
 
   align-items: center;
 
-  h4,
+  border-radius: 10px;
+
+  h3,
   span {
     text-align: center;
   }
 `;
 
 export const PlayQuizLink = styled(Link)`
-  padding: 5px;
+  padding: 10px;
   background-color: ${ALL_COLORS.yellow};
   cursor: pointer;
 
   color: inherit;
   text-decoration: none;
+  border-radius: 10px;
 `;

@@ -1,9 +1,9 @@
 import { NextButtonStyled, NextButtonStyledLink } from './NextButton.styles';
 
-const NextButton = ({ onClick, active, index, questions }) => {
+const NextButton = ({ onClick, active, index, questions, quizId }) => {
   if (index === questions.length - 1) {
     return (
-      <NextButtonStyledLink to="/result">
+      <NextButtonStyledLink to={'/result/' + quizId}>
         <NextButtonStyled active={active}>
           <b>SEE RESULT!</b>
         </NextButtonStyled>

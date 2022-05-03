@@ -1,8 +1,12 @@
 import { HeaderLinkStyled } from './HeaderLink.styles';
 import { ALL_COLORS } from '../../constants';
 import { randomNumber } from '../../helpers';
+import { useContext } from 'react';
+import { QuizContext } from '../../context';
 
 const HeaderLink = ({ fg, bg, type }) => {
+  const context = useContext(QuizContext);
+
   if (type === 'lucky') {
     return (
       <HeaderLinkStyled
@@ -28,7 +32,12 @@ const HeaderLink = ({ fg, bg, type }) => {
 
   if (type === 'cancel') {
     return (
-      <HeaderLinkStyled bg={ALL_COLORS.red} fg={ALL_COLORS.white} to="/">
+      <HeaderLinkStyled
+        bg={ALL_COLORS.red}
+        fg={ALL_COLORS.white}
+        to="/"
+        onClick={context.clearCurrentSession}
+      >
         <strong>CANCEL</strong>
       </HeaderLinkStyled>
     );
