@@ -24,11 +24,7 @@ const ResultPage = () => {
   };
 
   const showAnswers = () => {
-    setShowWrong((prevState) => {
-      return {
-        showWrong: !prevState.showWrong,
-      };
-    });
+    setShowWrong(true);
   };
 
   if (context.userAnswers.length > 0) {
