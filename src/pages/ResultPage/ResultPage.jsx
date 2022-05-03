@@ -8,6 +8,7 @@ import {
 } from './ResultPage.styles';
 import { useContext, useState } from 'react';
 import { QuizContext } from '../../context';
+import Timer from '../../components/Timer';
 
 const ResultPage = () => {
   const context = useContext(QuizContext);
@@ -40,6 +41,9 @@ const ResultPage = () => {
           <strong>{correctAnswers(context.userAnswers)} of 10 </strong>
           questions
         </span>
+        <span>
+          Time spent: <Timer />
+        </span>
         {!showWrong && (
           <ShowWrongAnswersButton onClick={showAnswers}>
             <b>WHERE I WAS WRONG?</b>
@@ -68,7 +72,7 @@ const ResultPage = () => {
       </ResultPageContainer>
     );
   } else {
-    return <div>Didn't play the game ;)</div>;
+    return <div>Didn't play the game</div>;
   }
 };
 

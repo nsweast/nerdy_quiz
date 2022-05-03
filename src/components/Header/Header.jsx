@@ -6,8 +6,6 @@ import { isObjectEmpty } from '../../helpers';
 const Header = () => {
   const params = useParams();
 
-  console.log(params);
-
   return (
     <HeaderStyled>
       <NavLeft>

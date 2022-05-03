@@ -1,14 +1,38 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect } from 'react';
+import { QuizContext } from '../context';
 
-const Timer = () => {
-  const [time, setTime] = useState(0);
+const Timer = ({ total }) => {
+  const context = useContext(QuizContext);
 
   useEffect(() => {
-    setInterval(() => setTime((prevTime) => prevTime + 1000), 1000);
-    console.log('hui');
-  }, []);
+    let interval;
 
-  return <span>{Math.floor((time / 1000) % 60)}</span>;
+    if (context.timerActive) {
+      interval = setInterval(() => {
+        context.setCurrentTimer((prevTime) => prevTime + 10);
+      }, 10);
+    } else {
+      clearInterval(interval);
+    }
+
+    return () => clearInterval(interval);
+  }, [context.timerActive]);
+
+  if (total) {
+    return (
+      <span>
+        {('0' + Math.floor((context.currentTimer / 60000) % 60)).slice(-2)}:
+        {('0' + Math.floor((context.currentTimer / 1000) % 60)).slice(-2)}
+      </span>
+    );
+  }
+
+  return (
+    <span>
+      {('0' + Math.floor((context.currentTimer / 60000) % 60)).slice(-2)}:
+      {('0' + Math.floor((context.currentTimer / 1000) % 60)).slice(-2)}
+    </span>
+  );
 };
 
 export default Timer;

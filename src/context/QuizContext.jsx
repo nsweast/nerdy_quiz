@@ -6,6 +6,9 @@ export const QuizContext = createContext();
 
 const QuizContextProvider = () => {
   const [currentUserAnswers, setCurrentUserAnswers] = useState([]);
+  const [currentTimer, setCurrentTimer] = useState(0);
+  const [timerActive, setTimerActive] = useState(false);
+  // const [summary, setSummary] = useState([]);
 
   useEffect(() => console.log(currentUserAnswers), [currentUserAnswers]);
 
@@ -42,6 +45,7 @@ const QuizContextProvider = () => {
 
   const clearCurrentSession = () => {
     setCurrentUserAnswers([]);
+    setCurrentTimer(0);
   };
 
   return (
@@ -50,6 +54,10 @@ const QuizContextProvider = () => {
         userAnswers: currentUserAnswers,
         selectAnswer: selectAnswer,
         clearCurrentSession: clearCurrentSession,
+        currentTimer: currentTimer,
+        setCurrentTimer: setCurrentTimer,
+        timerActive: timerActive,
+        setTimerActive: setTimerActive,
       }}
     >
       <Router />

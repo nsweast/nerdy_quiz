@@ -37,6 +37,7 @@ const PlayPage = () => {
       .then((questions) => {
         setQuestions(questions);
         setLoaded(true);
+        context.setTimerActive(true);
       });
   }, [params.quizId]);
 
