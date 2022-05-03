@@ -8,7 +8,7 @@ const QuizContextProvider = () => {
   const [currentUserAnswers, setCurrentUserAnswers] = useState([]);
   const [currentTimer, setCurrentTimer] = useState(0);
   const [timerActive, setTimerActive] = useState(false);
-  // const [summary, setSummary] = useState([]);
+  const [summary, setSummary] = useState([]);
 
   useEffect(() => console.log(currentUserAnswers), [currentUserAnswers]);
 
@@ -41,6 +41,10 @@ const QuizContextProvider = () => {
         },
       ]);
     }
+  };
+
+  const updateSummary = (timer, answerRatio) => {
+    setSummary((prevSummary) => [prevSummary, []]);
   };
 
   const clearCurrentSession = () => {

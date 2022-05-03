@@ -5,7 +5,7 @@ import { QuizContext } from '../../context';
 const NextButton = ({ onClick, active, index, questions, quizId }) => {
   const context = useContext(QuizContext);
 
-  if (index === questions.length - 1) {
+  if (index === questions.length - 1 && active) {
     return (
       <NextButtonStyledLink
         to={'/result/' + quizId}

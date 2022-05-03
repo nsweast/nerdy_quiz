@@ -16,8 +16,7 @@ const ResultPage = () => {
   const [showWrong, setShowWrong] = useState(false);
 
   const correctAnswers = (array) => {
-    return array.filter((answer) => answer.userAnswer === answer.correctAnswer)
-      .length;
+    return array.filter((answer) => answer.userAnswer === answer.correctAnswer);
   };
 
   const wrongAnswers = (array) => {
@@ -34,11 +33,13 @@ const ResultPage = () => {
         <h4>{context.userAnswers[0].category}</h4>
         <span>
           You scored{' '}
-          <strong>{correctAnswers(context.userAnswers) * 10} points</strong>
+          <strong>
+            {correctAnswers(context.userAnswers).length * 10} points
+          </strong>
         </span>
         <span>
           You've answered correctly to{' '}
-          <strong>{correctAnswers(context.userAnswers)} of 10 </strong>
+          <strong>{correctAnswers(context.userAnswers).length} of 10 </strong>
           questions
         </span>
         <span>

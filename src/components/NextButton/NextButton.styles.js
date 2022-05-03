@@ -10,6 +10,7 @@ export const NextButtonStyled = styled.div`
   align-items: center;
 
   user-select: none;
+  border-radius: 10px;
 
   color: ${ALL_COLORS.white};
   background-color: ${(props) =>
