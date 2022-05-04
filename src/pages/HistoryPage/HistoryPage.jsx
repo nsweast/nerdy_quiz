@@ -2,6 +2,7 @@ import { StatPageContainer } from './HistoryPage.styles';
 import { useContext, useState } from 'react';
 import { QuizContext } from '../../context';
 import { useEffect } from 'react';
+import Timer from '../../components/Timer';
 
 const HistoryPage = () => {
   const context = useContext(QuizContext);
@@ -43,7 +44,8 @@ const HistoryPage = () => {
       <span>Quizzes played: {userHistory.length}</span>
       <span>Question answered: {answersTotal(userHistory)}</span>
       <span>
-        Average time of answering quiz: {averageQuizTimer(userHistory)}
+        Average time of answering quiz:{' '}
+        <Timer timer={averageQuizTimer(userHistory)} />
       </span>
     </StatPageContainer>
   );

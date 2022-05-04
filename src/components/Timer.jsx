@@ -1,13 +1,13 @@
 import { useContext, useEffect } from 'react';
 import { QuizContext } from '../context';
 
-const Timer = () => {
+const Timer = ({ timer, active }) => {
   const context = useContext(QuizContext);
 
   useEffect(() => {
     let interval;
 
-    if (context.timerActive) {
+    if (active) {
       interval = setInterval(() => {
         context.setCurrentTimer((prevTime) => prevTime + 10);
       }, 10);
@@ -16,12 +16,12 @@ const Timer = () => {
     }
 
     return () => clearInterval(interval);
-  }, [context.timerActive]);
+  }, [active]);
 
   return (
     <span>
-      {('0' + Math.floor((context.currentTimer / 60000) % 60)).slice(-2)}:
-      {('0' + Math.floor((context.currentTimer / 1000) % 60)).slice(-2)}
+      {('0' + Math.floor((timer / 60000) % 60)).slice(-2)}:
+      {('0' + Math.floor((timer / 1000) % 60)).slice(-2)}
     </span>
   );
 };

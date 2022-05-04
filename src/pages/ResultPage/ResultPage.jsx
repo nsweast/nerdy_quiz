@@ -56,7 +56,7 @@ const ResultPage = () => {
         </span>
 
         <span>
-          Time spent: <Timer />
+          Time spent: <Timer timer={context.currentTimer} />
         </span>
 
         {!showWrong && (

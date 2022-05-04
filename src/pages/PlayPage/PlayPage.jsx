@@ -85,7 +85,8 @@ const PlayPage = () => {
         index={index}
         questions={questions}
       />
-      <Timer />
+
+      <Timer timer={context.currentTimer} active={context.timerActive} />
     </PlayPageContainer>
   );
 };
