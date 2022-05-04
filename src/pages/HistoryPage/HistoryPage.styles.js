@@ -22,3 +22,13 @@ export const StatPageContainer = styled.div`
     padding: 20px;
   }
 `;
+
+export const PieChart = styled.div`
+  height: 20vh;
+  width: 20vh;
+  border-radius: 50%;
+  background: conic-gradient(
+    ${ALL_COLORS.green} ${(props) => props.degree},
+    ${ALL_COLORS.red} ${(props) => props.degree} 360deg
+  );
+`;

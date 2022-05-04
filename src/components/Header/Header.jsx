@@ -3,12 +3,9 @@ import HeaderLink from '../HeaderLink';
 import { useContext } from 'react';
 import { QuizContext } from '../../context';
 import { ALL_PAGES, ALL_HEADER_TYPES } from '../../constants';
-import { useHistory } from 'react-router-dom';
 
 const Header = () => {
   const context = useContext(QuizContext);
-
-  const history = useHistory();
 
   switch (context.currentPage) {
     case ALL_PAGES.home:

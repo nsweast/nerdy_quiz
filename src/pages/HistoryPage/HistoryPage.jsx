@@ -1,4 +1,4 @@
-import { StatPageContainer } from './HistoryPage.styles';
+import { PieChart, StatPageContainer } from './HistoryPage.styles';
 import { useContext, useState } from 'react';
 import { QuizContext } from '../../context';
 import { useEffect } from 'react';
@@ -30,6 +30,15 @@ const HistoryPage = () => {
     return array.reduce((total, current) => total + current[type], 0);
   };
 
+  const pieInfo = () => {
+    return (
+      (((360 / 100) * answers(userHistory, 'correct')) /
+        answersTotal(userHistory)) *
+        100 +
+      'deg'
+    );
+  };
+
   if (userHistory.length === 0) {
     return (
       <StatPageContainer>
@@ -47,6 +56,7 @@ const HistoryPage = () => {
         Average time of answering quiz:{' '}
         <Timer timer={averageQuizTimer(userHistory)} />
       </span>
+      <PieChart degree={pieInfo()} />
     </StatPageContainer>
   );
 };
