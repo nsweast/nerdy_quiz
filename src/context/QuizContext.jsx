@@ -10,7 +10,9 @@ const QuizContextProvider = () => {
   const [currentUserAnswers, setCurrentUserAnswers] = useState([]);
   const [currentTimer, setCurrentTimer] = useState(0);
   const [timerActive, setTimerActive] = useState(false);
-  const [history, setHistory] = useState([]);
+  const [history, setHistory] = useState(
+    JSON.parse(localStorage.getItem('userStat')) || []
+  );
 
   useEffect(() => {
     localStorage.setItem('userStat', JSON.stringify(history));

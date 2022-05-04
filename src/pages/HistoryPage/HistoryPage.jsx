@@ -1,8 +1,17 @@
-import { PieChart, StatPageContainer } from './HistoryPage.styles';
+import {
+  PieChart,
+  PieChartContainer,
+  PieChartCorrect,
+  PieChartLegend,
+  PieChartSpan,
+  PieChartWrong,
+  StatPageContainer,
+} from './HistoryPage.styles';
 import { useContext, useState } from 'react';
 import { QuizContext } from '../../context';
 import { useEffect } from 'react';
 import Timer from '../../components/Timer';
+import { ALL_COLORS } from '../../constants';
 
 const HistoryPage = () => {
   const context = useContext(QuizContext);
@@ -30,7 +39,7 @@ const HistoryPage = () => {
     return array.reduce((total, current) => total + current[type], 0);
   };
 
-  const pieInfo = () => {
+  const pieDegree = () => {
     return (
       (((360 / 100) * answers(userHistory, 'correct')) /
         answersTotal(userHistory)) *
@@ -56,7 +65,19 @@ const HistoryPage = () => {
         Average time of answering quiz:{' '}
         <Timer timer={averageQuizTimer(userHistory)} />
       </span>
-      <PieChart degree={pieInfo()} />
+
+      <PieChartContainer>
+        <PieChart degree={pieDegree()} />
+
+        <PieChartLegend>
+          <PieChartSpan color={ALL_COLORS.green}>
+            Correct: {answers(userHistory, 'correct')}
+          </PieChartSpan>
+          <PieChartSpan color={ALL_COLORS.red}>
+            Wrong: {answers(userHistory, 'wrong')}
+          </PieChartSpan>
+        </PieChartLegend>
+      </PieChartContainer>
     </StatPageContainer>
   );
 };

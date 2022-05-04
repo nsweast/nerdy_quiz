@@ -23,6 +23,31 @@ export const StatPageContainer = styled.div`
   }
 `;
 
+export const PieChartContainer = styled.section`
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+`;
+
+export const PieChartLegend = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+export const PieChartSpan = styled.span`
+  display: flex;
+  align-items: center;
+
+  &:before {
+    content: '';
+    width: 15px;
+    height: 15px;
+    margin-right: 5px;
+    background-color: ${(props) => props.color};
+  }
+`;
+
 export const PieChart = styled.div`
   height: 20vh;
   width: 20vh;
