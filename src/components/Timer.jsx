@@ -1,7 +1,7 @@
 import { useContext, useEffect } from 'react';
 import { QuizContext } from '../context';
 
-const Timer = ({ total }) => {
+const Timer = () => {
   const context = useContext(QuizContext);
 
   useEffect(() => {
@@ -17,15 +17,6 @@ const Timer = ({ total }) => {
 
     return () => clearInterval(interval);
   }, [context.timerActive]);
-
-  if (total) {
-    return (
-      <span>
-        {('0' + Math.floor((context.currentTimer / 60000) % 60)).slice(-2)}:
-        {('0' + Math.floor((context.currentTimer / 1000) % 60)).slice(-2)}
-      </span>
-    );
-  }
 
   return (
     <span>

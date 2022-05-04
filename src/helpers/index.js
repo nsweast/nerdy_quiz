@@ -1,1 +1,1 @@
-export { shuffleArray, randomNumber, isObjectEmpty } from './helpers';
+export { shuffleArray, randomNumber } from './helpers';

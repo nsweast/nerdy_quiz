@@ -65,11 +65,12 @@ const PlayPage = () => {
   return (
     <PlayPageContainer>
       <Question>{question}</Question>
+
       <AnswersContainer>
         {allAnswers.map((answer) => (
           <Answer
             name={answer}
-            key={answer}
+            key={question + answer}
             question={question}
             onClick={(event) =>
               context.selectAnswer(event, question, correct_answer, category)
@@ -77,12 +78,12 @@ const PlayPage = () => {
           />
         ))}
       </AnswersContainer>
+
       <NextButton
         onClick={answerSet(question) && nextQuestion}
         active={answerSet(question)}
         index={index}
         questions={questions}
-        quizId={params.quizId}
       />
       <Timer />
     </PlayPageContainer>

@@ -31,25 +31,30 @@ const ResultPage = () => {
     return (
       <ResultPageContainer>
         <h4>{context.userAnswers[0].category}</h4>
+
         <span>
           You scored{' '}
           <strong>
             {correctAnswers(context.userAnswers).length * 10} points
           </strong>
         </span>
+
         <span>
           You've answered correctly to{' '}
           <strong>{correctAnswers(context.userAnswers).length} of 10 </strong>
           questions
         </span>
+
         <span>
           Time spent: <Timer />
         </span>
+
         {!showWrong && (
           <ShowWrongAnswersButton onClick={showAnswers}>
             <b>WHERE I WAS WRONG?</b>
           </ShowWrongAnswersButton>
         )}
+
         <WrongAnswersContainer>
           {showWrong &&
             wrongAnswers(context.userAnswers).map((answer) => {

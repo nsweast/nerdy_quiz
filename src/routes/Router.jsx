@@ -4,6 +4,7 @@ import PlayPage from '../pages/PlayPage';
 import MainPage from '../pages/MainPage';
 import NoMatch from '../pages/NoMatch';
 import ResultPage from '../pages/ResultPage';
+import HistoryPage from '../pages/HistoryPage';
 
 const Router = () => {
   return (
@@ -12,7 +13,8 @@ const Router = () => {
         <Route path="/" element={<MainPage />}>
           <Route index element={<HomePage />} />
           <Route path="play/:quizId" element={<PlayPage />} />
-          <Route path="result/:quizId" element={<ResultPage />} />
+          <Route path="result" element={<ResultPage />} />
+          <Route path="history" element={<HistoryPage />} />
           <Route path="*" element={<NoMatch />} />
         </Route>
       </Routes>

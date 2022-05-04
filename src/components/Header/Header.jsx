@@ -1,21 +1,43 @@
 import { HeaderStyled, NavLeft, NavRight } from './Header.styles';
-import HeaderLink from '../HeaderButton';
-import { useParams } from 'react-router-dom';
-import { isObjectEmpty } from '../../helpers';
+import HeaderLink from '../HeaderLink';
+import { useContext } from 'react';
+import { QuizContext } from '../../context';
+import { ALL_PAGES, ALL_HEADER_TYPES } from '../../constants';
 
 const Header = () => {
-  const params = useParams();
+  const context = useContext(QuizContext);
 
-  return (
-    <HeaderStyled>
-      <NavLeft>
-        <HeaderLink type={isObjectEmpty(params) ? 'lucky' : 'cancel'} />
-      </NavLeft>
-      <NavRight>
-        <HeaderLink type={isObjectEmpty(params) ? 'history' : null} />
-      </NavRight>
-    </HeaderStyled>
-  );
+  switch (context.currentPage) {
+    case ALL_PAGES.home:
+      return (
+        <HeaderStyled>
+          <HeaderLink type={ALL_HEADER_TYPES.lucky} />
+          <HeaderLink type={ALL_HEADER_TYPES.history} />
+        </HeaderStyled>
+      );
+
+    case ALL_PAGES.play:
+      return (
+        <HeaderStyled>
+          <HeaderLink type={ALL_HEADER_TYPES.cancel} />
+        </HeaderStyled>
+      );
+
+    case ALL_PAGES.result:
+      return (
+        <HeaderStyled>
+          <HeaderLink type={ALL_HEADER_TYPES.return} />
+        </HeaderStyled>
+      );
+    case ALL_PAGES.history:
+      return (
+        <HeaderStyled>
+          <HeaderLink type={ALL_HEADER_TYPES.home} />
+        </HeaderStyled>
+      );
+    default:
+      return null;
+  }
 };
 
 export default Header;

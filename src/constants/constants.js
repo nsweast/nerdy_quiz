@@ -12,3 +12,18 @@ export const ALL_COLORS = {
   green: '#5cdb95',
   red: '#a91b0d',
 };
+
+export const ALL_PAGES = {
+  home: 'home',
+  play: 'play',
+  result: 'result',
+  history: 'history',
+};
+
+export const ALL_HEADER_TYPES = {
+  home: 'home',
+  lucky: 'lucky',
+  history: 'history',
+  cancel: 'cancel',
+  return: 'return',
+};
