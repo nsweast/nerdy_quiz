@@ -6,13 +6,12 @@ import {
   WrongAnswersContainer,
   WrongUserAnswer,
 } from './ResultPage.styles';
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { QuizContext } from '../../context';
 import Timer from '../../components/Timer';
 
 const ResultPage = () => {
   const context = useContext(QuizContext);
-
   const [showWrong, setShowWrong] = useState(false);
 
   const correctAnswers = (array) => {
@@ -22,6 +21,14 @@ const ResultPage = () => {
   const wrongAnswers = (array) => {
     return array.filter((answer) => answer.userAnswer !== answer.correctAnswer);
   };
+
+  useEffect(() => {
+    context.historyHandler(
+      context.currentTimer,
+      wrongAnswers(context.userAnswers).length,
+      correctAnswers(context.userAnswers).length
+    );
+  }, []);
 
   const showAnswers = () => {
     setShowWrong(true);
@@ -41,7 +48,10 @@ const ResultPage = () => {
 
         <span>
           You've answered correctly to{' '}
-          <strong>{correctAnswers(context.userAnswers).length} of 10 </strong>
+          <strong>
+            {correctAnswers(context.userAnswers).length} of{' '}
+            {context.userAnswers.length}
+          </strong>{' '}
           questions
         </span>
 

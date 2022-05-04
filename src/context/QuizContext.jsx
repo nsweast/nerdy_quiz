@@ -6,13 +6,15 @@ import { ALL_PAGES } from '../constants';
 export const QuizContext = createContext();
 
 const QuizContextProvider = () => {
-  const [currentPage, setCurrentPage] = useState('home');
+  const [currentPage, setCurrentPage] = useState(ALL_PAGES.home);
   const [currentUserAnswers, setCurrentUserAnswers] = useState([]);
   const [currentTimer, setCurrentTimer] = useState(0);
   const [timerActive, setTimerActive] = useState(false);
   const [history, setHistory] = useState([]);
 
-  useEffect(() => console.log(currentUserAnswers), [currentUserAnswers]);
+  useEffect(() => {
+    localStorage.setItem('userStat', JSON.stringify(history));
+  }, [history]);
 
   const pageSwitcher = (page = ALL_PAGES.home) => {
     setCurrentPage(page);
@@ -54,7 +56,9 @@ const QuizContextProvider = () => {
     setCurrentTimer(0);
   };
 
-  const historyHandler = (time, wrong, correct) => {};
+  const historyHandler = (time, wrong, correct) => {
+    setHistory((prevHistory) => [...prevHistory, { time, wrong, correct }]);
+  };
 
   return (
     <QuizContext.Provider
@@ -68,6 +72,7 @@ const QuizContextProvider = () => {
         setCurrentTimer: setCurrentTimer,
         timerActive: timerActive,
         setTimerActive: setTimerActive,
+        historyHandler: historyHandler,
       }}
     >
       <Router />

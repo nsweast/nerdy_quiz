@@ -1,4 +1,4 @@
-import { HeaderStyled, NavLeft, NavRight } from './Header.styles';
+import { HeaderStyled } from './Header.styles';
 import HeaderLink from '../HeaderLink';
 import { useContext } from 'react';
 import { QuizContext } from '../../context';
@@ -32,7 +32,7 @@ const Header = () => {
     case ALL_PAGES.history:
       return (
         <HeaderStyled>
-          <HeaderLink type={ALL_HEADER_TYPES.home} />
+          <HeaderLink type={ALL_HEADER_TYPES.return} />
         </HeaderStyled>
       );
     default:

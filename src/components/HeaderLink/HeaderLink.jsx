@@ -44,24 +44,14 @@ const HeaderLink = ({ type }) => {
           <strong>CANCEL</strong>
         </HeaderLinkStyled>
       );
-    case ALL_HEADER_TYPES.return: //TODO: make it pass data into history
-      return (
-        <HeaderLinkStyled
-          bg={ALL_COLORS.purple}
-          fg={ALL_COLORS.white}
-          to="/"
-          onClick={() => context.pageSwitcher(ALL_PAGES.home)}
-        >
-          <strong>BACK HOME</strong>
-        </HeaderLinkStyled>
-      );
-    case ALL_HEADER_TYPES.home:
+    case ALL_HEADER_TYPES.return:
       return (
         <HeaderLinkStyled
           bg={ALL_COLORS.green}
           fg={ALL_COLORS.white}
           to="/"
           onClick={() => {
+            context.clearCurrentSession();
             context.pageSwitcher(ALL_PAGES.home);
           }}
         >

@@ -21,7 +21,6 @@ export const ALL_PAGES = {
 };
 
 export const ALL_HEADER_TYPES = {
-  home: 'home',
   lucky: 'lucky',
   history: 'history',
   cancel: 'cancel',
