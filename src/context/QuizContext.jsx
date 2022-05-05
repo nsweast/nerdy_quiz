@@ -1,4 +1,4 @@
-import { createContext, useEffect } from 'react';
+import { createContext, useCallback, useEffect } from 'react';
 import Router from '../routes';
 import { useState } from 'react';
 
@@ -9,14 +9,13 @@ const QuizContextProvider = () => {
   const [currentTimer, setCurrentTimer] = useState(0);
   const [timerActive, setTimerActive] = useState(false);
   const [fetchedQuizIds, setFetchedQuizIds] = useState([]);
-  const [history, setHistory] = useState(
+  const [userStats, setUserStats] = useState(
     JSON.parse(localStorage.getItem('userStat')) || []
   );
 
   useEffect(() => {
-    console.log('adding to local');
-    localStorage.setItem('userStat', JSON.stringify(history));
-  }, [history]);
+    localStorage.setItem('userStat', JSON.stringify(userStats));
+  }, [userStats]);
 
   const selectAnswer = (event, question, correct, category) => {
     const existAnswer = currentUserAnswers.find(
@@ -54,9 +53,9 @@ const QuizContextProvider = () => {
     setCurrentTimer(0);
   };
 
-  const historyHandler = (time, wrong, correct) => {
-    setHistory((prevHistory) => [...prevHistory, { time, wrong, correct }]);
-  };
+  const userStatsHandler = useCallback((time, wrong, correct) => {
+    setUserStats((prevStats) => [...prevStats, { time, wrong, correct }]);
+  }, []);
 
   return (
     <QuizContext.Provider
@@ -68,9 +67,11 @@ const QuizContextProvider = () => {
         setCurrentTimer: setCurrentTimer,
         timerActive: timerActive,
         setTimerActive: setTimerActive,
-        historyHandler: historyHandler,
         fetchedQuizIds: fetchedQuizIds,
         setFetchedQuizIds: setFetchedQuizIds,
+        userStats: userStats,
+        setUserStats: setUserStats,
+        userStatsHandler: userStatsHandler,
       }}
     >
       <Router />

@@ -5,8 +5,7 @@ import {
   PieChartSpan,
   StatPageContainer,
 } from './StatsPage.styles';
-import { useState } from 'react';
-import { useEffect } from 'react';
+import { useContext } from 'react';
 import Timer from '../../components/Timer';
 import { ALL_COLORS } from '../../constants';
 import {
@@ -15,27 +14,20 @@ import {
   getAnswersByType,
   getPieDegree,
 } from '../../helpers';
+import { QuizContext } from '../../context';
 
 const StatsPage = () => {
-  const [userStats, setUserStats] = useState([]);
+  const { userStats } = useContext(QuizContext);
 
-  useEffect(() => {
-    setUserStats(JSON.parse(localStorage.getItem('userStat')) || []);
-  }, []);
+  const filteredStats = userStats.filter((object) => object.time !== 0);
 
-  useEffect(() => {
-    setUserStats((prevHistory) =>
-      prevHistory.filter((object) => object.time !== 0)
-    );
-  }, [userStats.length]);
+  const averageQuizTimer = getAverageQuizTimer(filteredStats);
+  const allAnswersNumber = getAllAnswersNumber(filteredStats);
+  const correctAnswers = getAnswersByType(filteredStats, 'correct');
+  const wrongAnswers = getAnswersByType(filteredStats, 'wrong');
+  const pieDegree = getPieDegree(filteredStats);
 
-  const averageQuizTimer = getAverageQuizTimer(userStats);
-  const allAnswersNumber = getAllAnswersNumber(userStats);
-  const correctAnswers = getAnswersByType(userStats, 'correct');
-  const wrongAnswers = getAnswersByType(userStats, 'wrong');
-  const pieDegree = getPieDegree(userStats);
-
-  if (userStats.length === 0) {
+  if (filteredStats.length === 0) {
     return (
       <StatPageContainer>
         <span>Play some quizzes first ;)</span>
@@ -46,7 +38,7 @@ const StatsPage = () => {
   return (
     <StatPageContainer>
       <h4>My History</h4>
-      <span>Quizzes played: {userStats.length}</span>
+      <span>Quizzes played: {filteredStats.length}</span>
       <span>Question answered: {allAnswersNumber}</span>
       <span>
         Average time of answering quiz: <Timer timer={averageQuizTimer} />

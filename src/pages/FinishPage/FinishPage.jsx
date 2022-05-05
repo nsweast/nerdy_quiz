@@ -12,17 +12,17 @@ import Timer from '../../components/Timer';
 import { getCorrectAnswers, getWrongAnswers } from '../../helpers';
 
 const FinishPage = () => {
-  const { userAnswers, currentTimer, historyHandler } = useContext(QuizContext);
+  const { userAnswers, currentTimer, userStatsHandler } =
+    useContext(QuizContext);
   const [showWrong, setShowWrong] = useState(false);
 
   const correctAnswers = getCorrectAnswers(userAnswers);
   const wrongAnswers = getWrongAnswers(userAnswers);
 
   useEffect(() => {
-    console.log('FP');
-    historyHandler(currentTimer, wrongAnswers.length, correctAnswers.length);
+    userStatsHandler(currentTimer, wrongAnswers.length, correctAnswers.length);
   }, [
-    historyHandler,
+    userStatsHandler,
     currentTimer,
     wrongAnswers.length,
     correctAnswers.length,
@@ -82,7 +82,11 @@ const FinishPage = () => {
       </FinishPageContainer>
     );
   } else {
-    return <div>Didn't play the game</div>;
+    return (
+      <FinishPageContainer>
+        <h4>Didn't play the game</h4>
+      </FinishPageContainer>
+    );
   }
 };
 
