@@ -41,7 +41,11 @@ const Header = () => {
         </HeaderStyled>
       );
     default:
-      return null;
+      return (
+        <HeaderStyled>
+          <HeaderLink type={ALL_HEADER_TYPES.return} />
+        </HeaderStyled>
+      );
   }
 };
 

@@ -4,7 +4,8 @@ export const HomeContainer = styled.div`
   width: 100%;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
-  
+  justify-content: flex-start;
+  gap: 2%;
+
   margin-top: 20px;
-`
+`;

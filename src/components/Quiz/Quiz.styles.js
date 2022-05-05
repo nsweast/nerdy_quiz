@@ -3,8 +3,8 @@ import { ALL_COLORS } from '../../constants';
 import { Link } from 'react-router-dom';
 
 export const QuizBlock = styled.section`
-  width: 18%;
-  height: 300px;
+  flex: 0 1 200px;
+  height: 250px;
   background-color: ${ALL_COLORS.lightBlue};
   box-shadow: 5px 5px 30px ${ALL_COLORS.purpleGrey},
     -5px -5px 30px ${ALL_COLORS.purpleGrey};

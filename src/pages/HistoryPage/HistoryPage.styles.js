@@ -18,6 +18,7 @@ export const StatPageContainer = styled.div`
 
   h4,
   span {
+    text-align: center;
     margin: 0;
     padding: 20px;
   }
@@ -27,6 +28,7 @@ export const PieChartContainer = styled.section`
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
+  padding-bottom: 10px;
 `;
 
 export const PieChartLegend = styled.div`
@@ -49,8 +51,10 @@ export const PieChartSpan = styled.span`
 `;
 
 export const PieChart = styled.div`
-  height: 20vh;
-  width: 20vh;
+  height: 20vw;
+  width: 20vw;
+  min-height: 100px;
+  min-width: 100px;
   border-radius: 50%;
   background: conic-gradient(
     ${ALL_COLORS.green} ${(props) => props.degree},

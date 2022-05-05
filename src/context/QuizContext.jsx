@@ -1,7 +1,6 @@
 import { createContext, useEffect } from 'react';
 import Router from '../routes';
 import { useState } from 'react';
-import { ALL_PAGES } from '../constants';
 
 export const QuizContext = createContext();
 
@@ -9,6 +8,7 @@ const QuizContextProvider = () => {
   const [currentUserAnswers, setCurrentUserAnswers] = useState([]);
   const [currentTimer, setCurrentTimer] = useState(0);
   const [timerActive, setTimerActive] = useState(false);
+  const [fetchedQuizIds, setFetchedQuizIds] = useState([]);
   const [history, setHistory] = useState(
     JSON.parse(localStorage.getItem('userStat')) || []
   );
@@ -68,6 +68,8 @@ const QuizContextProvider = () => {
         timerActive: timerActive,
         setTimerActive: setTimerActive,
         historyHandler: historyHandler,
+        fetchedQuizIds: fetchedQuizIds,
+        setFetchedQuizIds: setFetchedQuizIds,
       }}
     >
       <Router />

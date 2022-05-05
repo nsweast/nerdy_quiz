@@ -1,11 +1,14 @@
 import { HomeContainer } from './HomePage.styles';
 import Quiz from '../../components/Quiz';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import Loading from '../../components/Loading';
 import { shuffleArray } from '../../helpers';
 import quizProvider from '../../providers/';
+import { QuizContext } from '../../context';
 
 const HomePage = () => {
+  const context = useContext(QuizContext);
+
   const [categories, setCategories] = useState([]);
   const [loaded, setLoaded] = useState(false);
 
@@ -28,6 +31,7 @@ const HomePage = () => {
       .then((categories) => {
         setCategories(categories);
         setLoaded(true);
+        context.setFetchedQuizIds(categories.map((category) => category.id));
       });
   }, []);
 

@@ -64,6 +64,7 @@ const PlayPage = () => {
   const { question, allAnswers, correct_answer, category } = questions[index];
   return (
     <PlayPageContainer>
+      <h4>{category}</h4>
       <Question>{question}</Question>
 
       <AnswersContainer>

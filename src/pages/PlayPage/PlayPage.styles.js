@@ -3,7 +3,7 @@ import { ALL_COLORS } from '../../constants';
 
 export const PlayPageContainer = styled.section`
   width: 70%;
-  height: 80vh;
+  height: 50vh;
   margin: 0 auto;
 
   background-color: ${ALL_COLORS.white};
@@ -19,7 +19,7 @@ export const PlayPageContainer = styled.section`
 `;
 
 export const Question = styled.div`
-  width: 50%;
+  width: 70%;
 
   padding: 0 10%;
   text-align: center;

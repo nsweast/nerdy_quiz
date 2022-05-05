@@ -5,9 +5,6 @@ export const HeaderStyled = styled.header`
   width: 100%;
 
   display: flex;
-  justify-content: space-between;
+  gap: 2%;
   align-items: center;
 `;
-
-export const NavLeft = styled.nav``;
-export const NavRight = styled.nav``;

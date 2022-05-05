@@ -3,7 +3,7 @@ import { ALL_COLORS } from '../../constants';
 import { Link } from 'react-router-dom';
 
 export const NextButtonStyled = styled.div`
-  padding: 15px;
+  padding: 10px;
 
   display: flex;
   justify-content: center;

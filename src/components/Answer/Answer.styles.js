@@ -5,11 +5,11 @@ export const AnswerContainer = styled.div`
   background-color: ${ALL_COLORS.purpleGrey};
   display: flex;
 
-  border-radius: 5px;
+  border-radius: 10px;
 
   align-items: center;
 
-  padding: 10px;
+  padding: 7px;
 `;
 
 export const AnswerInput = styled.input`
