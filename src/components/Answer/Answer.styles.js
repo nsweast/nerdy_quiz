@@ -4,6 +4,7 @@ import { ALL_COLORS } from '../../constants';
 export const AnswerContainer = styled.div`
   background-color: ${ALL_COLORS.purpleGrey};
   display: flex;
+  margin: 0 10px;
 
   border-radius: 10px;
 

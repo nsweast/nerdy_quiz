@@ -9,24 +9,20 @@ import {
 import { useContext, useEffect, useState } from 'react';
 import { QuizContext } from '../../context';
 import Timer from '../../components/Timer';
+import { getCorrectAnswers, getWrongAnswers } from '../../helpers';
 
 const FinishPage = () => {
   const context = useContext(QuizContext);
   const [showWrong, setShowWrong] = useState(false);
 
-  const correctAnswers = (array) => {
-    return array.filter((answer) => answer.userAnswer === answer.correctAnswer);
-  };
-
-  const wrongAnswers = (array) => {
-    return array.filter((answer) => answer.userAnswer !== answer.correctAnswer);
-  };
+  const correctAnswers = getCorrectAnswers(context.userAnswers);
+  const wrongAnswers = getWrongAnswers(context.userAnswers);
 
   useEffect(() => {
     context.historyHandler(
       context.currentTimer,
-      wrongAnswers(context.userAnswers).length,
-      correctAnswers(context.userAnswers).length
+      wrongAnswers.length,
+      correctAnswers.length
     );
   }, []);
 
@@ -40,17 +36,13 @@ const FinishPage = () => {
         <h4>{context.userAnswers[0].category}</h4>
 
         <span>
-          You scored{' '}
-          <strong>
-            {correctAnswers(context.userAnswers).length * 10} points
-          </strong>
+          You scored <strong>{correctAnswers.length * 10} points</strong>
         </span>
 
         <span>
           You've answered correctly to{' '}
           <strong>
-            {correctAnswers(context.userAnswers).length} of{' '}
-            {context.userAnswers.length}
+            {correctAnswers.length} of {context.userAnswers.length}
           </strong>{' '}
           questions
         </span>
@@ -67,7 +59,7 @@ const FinishPage = () => {
 
         <WrongAnswersContainer>
           {showWrong &&
-            wrongAnswers(context.userAnswers).map((answer) => {
+            wrongAnswers.map((answer) => {
               return (
                 <WrongAnswerBlock key={answer.question}>
                   <strong>{answer.question}</strong>

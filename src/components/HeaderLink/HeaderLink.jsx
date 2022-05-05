@@ -8,7 +8,7 @@ const HeaderLink = ({ type }) => {
   const context = useContext(QuizContext);
 
   switch (type) {
-    case ALL_HEADER_TYPES.lucky: //TODO: make fully really random
+    case ALL_HEADER_TYPES.lucky:
       return (
         <HeaderLinkStyled
           bg={ALL_COLORS.yellow}

@@ -1,1 +1,10 @@
-export { shuffleArray, randomNumber } from './helpers';
+export {
+  shuffleArray,
+  randomNumber,
+  getWrongAnswers,
+  getCorrectAnswers,
+  getAnswersByType,
+  getAllAnswersNumber,
+  getAverageQuizTimer,
+  getPieDegree,
+} from './helpers';

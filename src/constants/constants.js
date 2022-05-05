@@ -13,13 +13,6 @@ export const ALL_COLORS = {
   red: '#da012d',
 };
 
-export const ALL_PAGES = {
-  home: 'home',
-  play: 'play',
-  result: 'result',
-  history: 'history',
-};
-
 export const ALL_HEADER_TYPES = {
   lucky: 'lucky',
   history: 'history',

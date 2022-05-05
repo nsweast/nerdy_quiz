@@ -1,6 +1,5 @@
 import { HeaderStyled } from './Header.styles';
 import HeaderLink from '../HeaderLink';
-import { useEffect, useState } from 'react';
 import { ALL_HEADER_TYPES } from '../../constants';
 import { useLocation, useParams } from 'react-router-dom';
 
@@ -8,13 +7,7 @@ const Header = () => {
   const { pathname } = useLocation();
   const { quizId } = useParams();
 
-  const [page, setPage] = useState(pathname);
-
-  useEffect(() => {
-    setPage(pathname);
-  }, [pathname]);
-
-  switch (page) {
+  switch (pathname) {
     case '/':
       return (
         <HeaderStyled>
