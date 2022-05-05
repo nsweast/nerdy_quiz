@@ -1,10 +1,8 @@
 import {
   PieChart,
   PieChartContainer,
-  PieChartCorrect,
   PieChartLegend,
   PieChartSpan,
-  PieChartWrong,
   StatPageContainer,
 } from './HistoryPage.styles';
 import { useContext, useState } from 'react';
@@ -21,6 +19,12 @@ const HistoryPage = () => {
   useEffect(() => {
     setUserHistory(JSON.parse(localStorage.getItem('userStat')));
   }, []);
+
+  useEffect(() => {
+    setUserHistory((prevHistory) =>
+      prevHistory.filter((object) => object.time !== 0)
+    );
+  }, [userHistory.length]);
 
   const averageQuizTimer = (array) => {
     return (

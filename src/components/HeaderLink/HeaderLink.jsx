@@ -3,7 +3,6 @@ import { ALL_COLORS, ALL_HEADER_TYPES } from '../../constants';
 import { randomNumber } from '../../helpers';
 import { useContext } from 'react';
 import { QuizContext } from '../../context';
-import { ALL_PAGES } from '../../constants';
 
 const HeaderLink = ({ type }) => {
   const context = useContext(QuizContext);
@@ -14,7 +13,6 @@ const HeaderLink = ({ type }) => {
         <HeaderLinkStyled
           bg={ALL_COLORS.yellow}
           to={`/play/${randomNumber(9, 18)}`}
-          onClick={() => context.pageSwitcher(ALL_PAGES.play)}
         >
           <strong>I'M LUCKY!</strong>
         </HeaderLinkStyled>
@@ -25,7 +23,6 @@ const HeaderLink = ({ type }) => {
           bg={ALL_COLORS.purple}
           fg={ALL_COLORS.white}
           to="/history"
-          onClick={() => context.pageSwitcher(ALL_PAGES.history)}
         >
           <strong>HISTORY</strong>
         </HeaderLinkStyled>
@@ -38,7 +35,6 @@ const HeaderLink = ({ type }) => {
           to="/"
           onClick={() => {
             context.clearCurrentSession();
-            context.pageSwitcher(ALL_PAGES.home);
           }}
         >
           <strong>CANCEL</strong>
@@ -52,7 +48,6 @@ const HeaderLink = ({ type }) => {
           to="/"
           onClick={() => {
             context.clearCurrentSession();
-            context.pageSwitcher(ALL_PAGES.home);
           }}
         >
           <strong>BACK HOME</strong>

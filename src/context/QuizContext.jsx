@@ -6,7 +6,6 @@ import { ALL_PAGES } from '../constants';
 export const QuizContext = createContext();
 
 const QuizContextProvider = () => {
-  const [currentPage, setCurrentPage] = useState(ALL_PAGES.home);
   const [currentUserAnswers, setCurrentUserAnswers] = useState([]);
   const [currentTimer, setCurrentTimer] = useState(0);
   const [timerActive, setTimerActive] = useState(false);
@@ -17,10 +16,6 @@ const QuizContextProvider = () => {
   useEffect(() => {
     localStorage.setItem('userStat', JSON.stringify(history));
   }, [history]);
-
-  const pageSwitcher = (page = ALL_PAGES.home) => {
-    setCurrentPage(page);
-  };
 
   const selectAnswer = (event, question, correct, category) => {
     const existAnswer = currentUserAnswers.find(
@@ -65,8 +60,6 @@ const QuizContextProvider = () => {
   return (
     <QuizContext.Provider
       value={{
-        currentPage: currentPage,
-        pageSwitcher: pageSwitcher,
         userAnswers: currentUserAnswers,
         selectAnswer: selectAnswer,
         clearCurrentSession: clearCurrentSession,

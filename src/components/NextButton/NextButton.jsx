@@ -1,7 +1,6 @@
 import { NextButtonStyled, NextButtonStyledLink } from './NextButton.styles';
 import { useContext } from 'react';
 import { QuizContext } from '../../context';
-import { ALL_PAGES } from '../../constants';
 
 const NextButton = ({ onClick, active, index, questions }) => {
   const context = useContext(QuizContext);
@@ -10,10 +9,7 @@ const NextButton = ({ onClick, active, index, questions }) => {
     return (
       <NextButtonStyledLink
         to="/result"
-        onClick={() => {
-          context.setTimerActive(false);
-          context.pageSwitcher(ALL_PAGES.result);
-        }}
+        onClick={() => context.setTimerActive(false)}
       >
         <NextButtonStyled active={active}>
           <b>SEE RESULT!</b>

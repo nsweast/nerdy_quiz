@@ -1,35 +1,40 @@
 import { HeaderStyled } from './Header.styles';
 import HeaderLink from '../HeaderLink';
-import { useContext } from 'react';
-import { QuizContext } from '../../context';
-import { ALL_PAGES, ALL_HEADER_TYPES } from '../../constants';
+import { useEffect, useState } from 'react';
+import { ALL_HEADER_TYPES } from '../../constants';
+import { useLocation, useParams } from 'react-router-dom';
 
 const Header = () => {
-  const context = useContext(QuizContext);
+  const { pathname } = useLocation();
+  const { quizId } = useParams();
 
-  switch (context.currentPage) {
-    case ALL_PAGES.home:
+  const [page, setPage] = useState(pathname);
+
+  useEffect(() => {
+    setPage(pathname);
+  }, [pathname]);
+
+  switch (page) {
+    case '/':
       return (
         <HeaderStyled>
           <HeaderLink type={ALL_HEADER_TYPES.lucky} />
           <HeaderLink type={ALL_HEADER_TYPES.history} />
         </HeaderStyled>
       );
-
-    case ALL_PAGES.play:
+    case '/play/' + quizId:
       return (
         <HeaderStyled>
           <HeaderLink type={ALL_HEADER_TYPES.cancel} />
         </HeaderStyled>
       );
-
-    case ALL_PAGES.result:
+    case '/result':
       return (
         <HeaderStyled>
           <HeaderLink type={ALL_HEADER_TYPES.return} />
         </HeaderStyled>
       );
-    case ALL_PAGES.history:
+    case '/history':
       return (
         <HeaderStyled>
           <HeaderLink type={ALL_HEADER_TYPES.return} />

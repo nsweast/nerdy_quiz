@@ -23,9 +23,6 @@ const ResultPage = () => {
   };
 
   useEffect(() => {
-    if (context.currentTimer === 0) {
-      return null;
-    }
     context.historyHandler(
       context.currentTimer,
       wrongAnswers(context.userAnswers).length,
