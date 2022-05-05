@@ -1,39 +1,60 @@
 import {
-  NextQuestionButton,
   PlayPageContainer,
   Question,
   AnswersContainer,
+  QuestionNumber,
 } from './PlayPage.styles';
 import Answer from '../../components/Answer';
 import { useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-import Loading from '../../components/common/Loading';
+import { useContext, useEffect, useState } from 'react';
+import Loading from '../../components/Loading';
 import { shuffleArray } from '../../helpers';
-import { getTenQuestionsById } from '../../providers';
+import quizProvider from '../../providers';
+import { QuizContext } from '../../context';
+import NextButton from '../../components/NextButton';
+import Timer from '../../components/Timer';
 
 const PlayPage = () => {
-  const [quizInfo, setQuizInfo] = useState([]);
-  const [isLoaded, setIsLoaded] = useState(false);
+  const context = useContext(QuizContext);
+
+  const [questions, setQuestions] = useState([]);
+  const [loaded, setLoaded] = useState(false);
   const [index, setIndex] = useState(0);
 
   const params = useParams();
 
   useEffect(() => {
-    getTenQuestionsById(params.quizId).then((data) => {
-      setQuizInfo(data);
-      setIsLoaded(true);
-    });
+    quizProvider.questions
+      .getTenQuestionsById(params.quizId)
+      .then((questions) =>
+        questions.map((question) => ({
+          ...question,
+          allAnswers: shuffleArray([
+            question.correct_answer,
+            ...question.incorrect_answers,
+          ]),
+        }))
+      )
+      .then((questions) => {
+        setQuestions(questions);
+        setLoaded(true);
+        context.setTimerActive(true);
+      });
   }, [params.quizId]);
 
-  const next = () => {
-    if (index < quizInfo.length - 1) {
+  const answerSet = (question) => {
+    return context.userAnswers.find((answer) => answer.question === question);
+  };
+
+  const nextQuestion = () => {
+    if (index < questions.length - 1) {
       setIndex(index + 1);
     } else {
-      setIndex(quizInfo.length - 1);
+      setIndex(questions.length - 1);
     }
   };
 
-  if (!isLoaded) {
+  if (!loaded) {
     return (
       <PlayPageContainer>
         <Loading />
@@ -41,20 +62,36 @@ const PlayPage = () => {
     );
   }
 
-  const { question, correct_answer, incorrect_answers, type } = quizInfo[index];
-  const answersArray = shuffleArray([correct_answer, ...incorrect_answers]);
-
+  const { question, allAnswers, correct_answer, category } = questions[index];
   return (
     <PlayPageContainer>
+      <h4>{category}</h4>
+      <QuestionNumber>
+        {index + 1} / {questions.length}
+      </QuestionNumber>
       <Question>{question}</Question>
+
       <AnswersContainer>
-        {answersArray.map((answer) => (
-          <Answer type={type} name={answer} key={answer} question={question} />
+        {allAnswers.map((answer) => (
+          <Answer
+            name={answer}
+            key={question + answer}
+            question={question}
+            onClick={(event) =>
+              context.selectAnswer(event, question, correct_answer, category)
+            }
+          />
         ))}
       </AnswersContainer>
-      <NextQuestionButton onClick={next}>
-        <b>NEXT QUESTION</b>
-      </NextQuestionButton>
+
+      <NextButton
+        onClick={answerSet(question) && nextQuestion}
+        active={answerSet(question)}
+        index={index}
+        questions={questions}
+      />
+
+      <Timer timer={context.currentTimer} active={context.timerActive} />
     </PlayPageContainer>
   );
 };

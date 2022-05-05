@@ -1,5 +1,5 @@
 import styled from 'styled-components/macro';
-import { ALL_COLORS } from '../../constants';
+import { ALL_COLORS } from '../constants';
 
 const LoadingStyled = styled.span`
   margin: 0 auto;

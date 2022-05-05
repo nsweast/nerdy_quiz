@@ -4,12 +4,13 @@ import { ALL_COLORS } from '../../constants';
 export const AnswerContainer = styled.div`
   background-color: ${ALL_COLORS.purpleGrey};
   display: flex;
+  margin: 0 10px;
 
-  border-radius: 5px;
+  border-radius: 10px;
 
   align-items: center;
 
-  padding: 10px;
+  padding: 7px;
 `;
 
 export const AnswerInput = styled.input`

@@ -1,6 +1,1 @@
-export {
-  getCategories,
-  getQuestionsAmountById,
-  getQuestionsAmountTotal,
-  getTenQuestionsById,
-} from './providers';
+export { default } from './quizProvider';

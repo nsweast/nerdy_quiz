@@ -1,7 +1,7 @@
-import Router from './routes';
+import QuizContextProvider from './context';
 
 function App() {
-  return <Router />;
+  return <QuizContextProvider />;
 }
 
 export default App;

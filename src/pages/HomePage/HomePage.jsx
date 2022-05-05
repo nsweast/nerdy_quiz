@@ -1,34 +1,37 @@
 import { HomeContainer } from './HomePage.styles';
 import Quiz from '../../components/Quiz';
-import { useEffect, useState } from 'react';
-import Loading from '../../components/common/Loading';
+import { useContext, useEffect, useState } from 'react';
+import Loading from '../../components/Loading';
 import { shuffleArray } from '../../helpers';
-import {
-  getCategories,
-  getQuestionsAmountById,
-  getQuestionsAmountTotal,
-} from '../../providers/';
+import quizProvider from '../../providers/';
+import { QuizContext } from '../../context';
 
 const HomePage = () => {
+  const context = useContext(QuizContext);
+
   const [categories, setCategories] = useState([]);
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
-    getCategories()
+    quizProvider.categories
+      .getCategories()
       .then((categories) => shuffleArray(categories).slice(0, 10))
       .then((randomTen) => {
-        return getQuestionsAmountTotal().then((questions) => {
-          return randomTen.map((category) => {
-            return {
-              ...category,
-              amount: questions[category.id].total_num_of_verified_questions,
-            };
+        return quizProvider.questions
+          .getQuestionsAmountTotal()
+          .then((questions) => {
+            return randomTen.map((category) => {
+              return {
+                ...category,
+                amount: questions[category.id].total_num_of_verified_questions,
+              };
+            });
           });
-        });
       })
       .then((categories) => {
         setCategories(categories);
         setLoaded(true);
+        context.setFetchedQuizIds(categories.map((category) => category.id));
       });
   }, []);
 

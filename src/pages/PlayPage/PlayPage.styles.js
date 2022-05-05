@@ -2,8 +2,10 @@ import styled from 'styled-components/macro';
 import { ALL_COLORS } from '../../constants';
 
 export const PlayPageContainer = styled.section`
+  position: relative;
+
   width: 70%;
-  height: 80vh;
+  height: 50vh;
   margin: 0 auto;
 
   background-color: ${ALL_COLORS.white};
@@ -16,10 +18,21 @@ export const PlayPageContainer = styled.section`
   border-radius: 10px;
   box-shadow: 20px 20px 40px ${ALL_COLORS.purpleGrey},
     -20px -20px 40px ${ALL_COLORS.purpleGrey};
+
+  h4 {
+    text-align: center;
+  }
+`;
+
+export const QuestionNumber = styled.span`
+  position: absolute;
+
+  top: 10px;
+  right: 10px;
 `;
 
 export const Question = styled.div`
-  width: 50%;
+  width: 70%;
 
   padding: 0 10%;
   text-align: center;
@@ -32,17 +45,4 @@ export const AnswersContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 10px;
-`;
-
-export const NextQuestionButton = styled.a`
-  padding: 15px;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  color: ${ALL_COLORS.white};
-  background-color: ${ALL_COLORS.green};
-
-  cursor: pointer;
 `;
