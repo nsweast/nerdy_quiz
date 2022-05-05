@@ -2,6 +2,7 @@ import {
   PlayPageContainer,
   Question,
   AnswersContainer,
+  QuestionNumber,
 } from './PlayPage.styles';
 import Answer from '../../components/Answer';
 import { useParams } from 'react-router-dom';
@@ -65,6 +66,9 @@ const PlayPage = () => {
   return (
     <PlayPageContainer>
       <h4>{category}</h4>
+      <QuestionNumber>
+        {index + 1} / {questions.length}
+      </QuestionNumber>
       <Question>{question}</Question>
 
       <AnswersContainer>

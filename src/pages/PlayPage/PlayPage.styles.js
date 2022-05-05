@@ -2,6 +2,8 @@ import styled from 'styled-components/macro';
 import { ALL_COLORS } from '../../constants';
 
 export const PlayPageContainer = styled.section`
+  position: relative;
+
   width: 70%;
   height: 50vh;
   margin: 0 auto;
@@ -16,6 +18,17 @@ export const PlayPageContainer = styled.section`
   border-radius: 10px;
   box-shadow: 20px 20px 40px ${ALL_COLORS.purpleGrey},
     -20px -20px 40px ${ALL_COLORS.purpleGrey};
+
+  h4 {
+    text-align: center;
+  }
+`;
+
+export const QuestionNumber = styled.span`
+  position: absolute;
+
+  top: 10px;
+  right: 10px;
 `;
 
 export const Question = styled.div`
