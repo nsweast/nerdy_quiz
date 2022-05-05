@@ -17,25 +17,25 @@ import {
 } from '../../helpers';
 
 const StatsPage = () => {
-  const [userHistory, setUserHistory] = useState([]);
+  const [userStats, setUserStats] = useState([]);
 
   useEffect(() => {
-    setUserHistory(JSON.parse(localStorage.getItem('userStat')));
+    setUserStats(JSON.parse(localStorage.getItem('userStat')) || []);
   }, []);
 
   useEffect(() => {
-    setUserHistory((prevHistory) =>
+    setUserStats((prevHistory) =>
       prevHistory.filter((object) => object.time !== 0)
     );
-  }, [userHistory.length]);
+  }, [userStats.length]);
 
-  const averageQuizTimer = getAverageQuizTimer(userHistory);
-  const allAnswersNumber = getAllAnswersNumber(userHistory);
-  const correctAnswers = getAnswersByType(userHistory, 'correct');
-  const wrongAnswers = getAnswersByType(userHistory, 'wrong');
-  const pieDegree = getPieDegree(userHistory);
+  const averageQuizTimer = getAverageQuizTimer(userStats);
+  const allAnswersNumber = getAllAnswersNumber(userStats);
+  const correctAnswers = getAnswersByType(userStats, 'correct');
+  const wrongAnswers = getAnswersByType(userStats, 'wrong');
+  const pieDegree = getPieDegree(userStats);
 
-  if (userHistory.length === 0) {
+  if (userStats.length === 0) {
     return (
       <StatPageContainer>
         <span>Play some quizzes first ;)</span>
@@ -46,7 +46,7 @@ const StatsPage = () => {
   return (
     <StatPageContainer>
       <h4>My History</h4>
-      <span>Quizzes played: {userHistory.length}</span>
+      <span>Quizzes played: {userStats.length}</span>
       <span>Question answered: {allAnswersNumber}</span>
       <span>
         Average time of answering quiz: <Timer timer={averageQuizTimer} />

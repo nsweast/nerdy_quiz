@@ -19,6 +19,7 @@ const FinishPage = () => {
   const wrongAnswers = getWrongAnswers(userAnswers);
 
   useEffect(() => {
+    console.log('FP');
     historyHandler(currentTimer, wrongAnswers.length, correctAnswers.length);
   }, [
     historyHandler,

@@ -14,6 +14,7 @@ const QuizContextProvider = () => {
   );
 
   useEffect(() => {
+    console.log('adding to local');
     localStorage.setItem('userStat', JSON.stringify(history));
   }, [history]);
 
