@@ -12,28 +12,29 @@ import Timer from '../../components/Timer';
 import { getCorrectAnswers, getWrongAnswers } from '../../helpers';
 
 const FinishPage = () => {
-  const context = useContext(QuizContext);
+  const { userAnswers, currentTimer, historyHandler } = useContext(QuizContext);
   const [showWrong, setShowWrong] = useState(false);
 
-  const correctAnswers = getCorrectAnswers(context.userAnswers);
-  const wrongAnswers = getWrongAnswers(context.userAnswers);
+  const correctAnswers = getCorrectAnswers(userAnswers);
+  const wrongAnswers = getWrongAnswers(userAnswers);
 
   useEffect(() => {
-    context.historyHandler(
-      context.currentTimer,
-      wrongAnswers.length,
-      correctAnswers.length
-    );
-  }, []);
+    historyHandler(currentTimer, wrongAnswers.length, correctAnswers.length);
+  }, [
+    historyHandler,
+    currentTimer,
+    wrongAnswers.length,
+    correctAnswers.length,
+  ]);
 
   const showAnswers = () => {
     setShowWrong(true);
   };
 
-  if (context.userAnswers.length > 0) {
+  if (userAnswers.length > 0) {
     return (
       <FinishPageContainer>
-        <h4>{context.userAnswers[0].category}</h4>
+        <h4>{userAnswers[0].category}</h4>
 
         <span>
           You scored <strong>{correctAnswers.length * 10} points</strong>
@@ -42,13 +43,13 @@ const FinishPage = () => {
         <span>
           You've answered correctly to{' '}
           <strong>
-            {correctAnswers.length} of {context.userAnswers.length}
+            {correctAnswers.length} of {userAnswers.length}
           </strong>{' '}
           questions
         </span>
 
         <span>
-          Time spent: <Timer timer={context.currentTimer} />
+          Time spent: <Timer timer={currentTimer} />
         </span>
 
         {!showWrong && (

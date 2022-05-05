@@ -12,11 +12,14 @@ const HeaderLink = ({ type }) => {
       return (
         <HeaderLinkStyled
           bg={ALL_COLORS.yellow}
-          to={`/play/${
-            context.fetchedQuizIds[
-              randomNumber(0, context.fetchedQuizIds.length - 1)
-            ]
-          }`}
+          to={
+            context.fetchedQuizIds.length > 0 &&
+            `/play/${
+              context.fetchedQuizIds[
+                randomNumber(0, context.fetchedQuizIds.length - 1)
+              ]
+            }`
+          }
         >
           <strong>I'M LUCKY!</strong>
         </HeaderLinkStyled>

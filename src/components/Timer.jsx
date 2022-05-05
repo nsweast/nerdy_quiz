@@ -2,21 +2,21 @@ import { useContext, useEffect } from 'react';
 import { QuizContext } from '../context';
 
 const Timer = ({ timer, active }) => {
-  const context = useContext(QuizContext);
+  const { setCurrentTimer } = useContext(QuizContext);
 
   useEffect(() => {
     let interval;
 
     if (active) {
       interval = setInterval(() => {
-        context.setCurrentTimer((prevTime) => prevTime + 10);
+        setCurrentTimer((prevTime) => prevTime + 10);
       }, 10);
     } else {
       clearInterval(interval);
     }
 
     return () => clearInterval(interval);
-  }, [active]);
+  }, [active, setCurrentTimer]);
 
   return (
     <span>

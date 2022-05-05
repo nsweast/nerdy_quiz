@@ -15,7 +15,13 @@ import NextButton from '../../components/NextButton';
 import Timer from '../../components/Timer';
 
 const PlayPage = () => {
-  const context = useContext(QuizContext);
+  const {
+    currentTimer,
+    setTimerActive,
+    userAnswers,
+    selectAnswer,
+    timerActive,
+  } = useContext(QuizContext);
 
   const [questions, setQuestions] = useState([]);
   const [loaded, setLoaded] = useState(false);
@@ -38,12 +44,12 @@ const PlayPage = () => {
       .then((questions) => {
         setQuestions(questions);
         setLoaded(true);
-        context.setTimerActive(true);
+        setTimerActive(true);
       });
-  }, [params.quizId]);
+  }, [params.quizId, setTimerActive]);
 
   const answerSet = (question) => {
-    return context.userAnswers.find((answer) => answer.question === question);
+    return userAnswers.find((answer) => answer.question === question);
   };
 
   const nextQuestion = () => {
@@ -78,7 +84,7 @@ const PlayPage = () => {
             key={question + answer}
             question={question}
             onClick={(event) =>
-              context.selectAnswer(event, question, correct_answer, category)
+              selectAnswer(event, question, correct_answer, category)
             }
           />
         ))}
@@ -91,7 +97,7 @@ const PlayPage = () => {
         questions={questions}
       />
 
-      <Timer timer={context.currentTimer} active={context.timerActive} />
+      <Timer timer={currentTimer} active={timerActive} />
     </PlayPageContainer>
   );
 };

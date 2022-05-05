@@ -7,7 +7,7 @@ import quizProvider from '../../providers/';
 import { QuizContext } from '../../context';
 
 const HomePage = () => {
-  const context = useContext(QuizContext);
+  const { setFetchedQuizIds } = useContext(QuizContext);
 
   const [categories, setCategories] = useState([]);
   const [loaded, setLoaded] = useState(false);
@@ -31,9 +31,12 @@ const HomePage = () => {
       .then((categories) => {
         setCategories(categories);
         setLoaded(true);
-        context.setFetchedQuizIds(categories.map((category) => category.id));
       });
   }, []);
+
+  useEffect(() => {
+    setFetchedQuizIds(categories.map((category) => category.id));
+  }, [categories, setFetchedQuizIds]);
 
   if (!loaded) {
     return (
