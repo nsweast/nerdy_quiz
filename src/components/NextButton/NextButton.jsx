@@ -8,7 +8,7 @@ const NextButton = ({ onClick, active, index, questions }) => {
   if (index === questions.length - 1 && active) {
     return (
       <NextButtonStyledLink
-        to="/result"
+        to="/finish"
         onClick={() => context.setTimerActive(false)}
       >
         <NextButtonStyled active={active}>

@@ -1,16 +1,16 @@
 import {
   CorrectAnswerForUser,
-  ResultPageContainer,
+  FinishPageContainer,
   ShowWrongAnswersButton,
   WrongAnswerBlock,
   WrongAnswersContainer,
   WrongUserAnswer,
-} from './ResultPage.styles';
+} from './FinishPage.styles';
 import { useContext, useEffect, useState } from 'react';
 import { QuizContext } from '../../context';
 import Timer from '../../components/Timer';
 
-const ResultPage = () => {
+const FinishPage = () => {
   const context = useContext(QuizContext);
   const [showWrong, setShowWrong] = useState(false);
 
@@ -36,7 +36,7 @@ const ResultPage = () => {
 
   if (context.userAnswers.length > 0) {
     return (
-      <ResultPageContainer>
+      <FinishPageContainer>
         <h4>{context.userAnswers[0].category}</h4>
 
         <span>
@@ -85,11 +85,11 @@ const ResultPage = () => {
               );
             })}
         </WrongAnswersContainer>
-      </ResultPageContainer>
+      </FinishPageContainer>
     );
   } else {
     return <div>Didn't play the game</div>;
   }
 };
 
-export default ResultPage;
+export default FinishPage;

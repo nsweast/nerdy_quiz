@@ -1,7 +1,7 @@
 import styled from 'styled-components/macro';
 import { ALL_COLORS } from '../../constants';
 
-export const ResultPageContainer = styled.div`
+export const FinishPageContainer = styled.div`
   width: 70%;
   margin: 0 auto;
 
