@@ -23,6 +23,11 @@ export const QuizBlock = styled.section`
   span {
     text-align: center;
   }
+
+  @media (max-width: 600px) {
+    flex: 0 1 250px;
+    height: 300px;
+  }
 `;
 
 export const PlayQuizLink = styled(Link)`

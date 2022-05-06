@@ -17,4 +17,6 @@ export const HeaderLinkStyled = styled(Link)`
   text-decoration: none;
 
   border-radius: 10px;
+
+  user-select: none;
 `;

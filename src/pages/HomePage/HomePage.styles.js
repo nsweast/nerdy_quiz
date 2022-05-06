@@ -8,4 +8,8 @@ export const HomeContainer = styled.div`
   gap: 2%;
 
   margin-top: 20px;
+
+  @media (max-width: 600px) {
+    justify-content: center;
+  }
 `;

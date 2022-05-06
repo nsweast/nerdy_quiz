@@ -22,6 +22,11 @@ export const PlayPageContainer = styled.section`
   h4 {
     text-align: center;
   }
+
+  @media (max-height: 1000px) {
+    height: 700px;
+    box-shadow: 5px 5px 50px ${ALL_COLORS.purpleGrey};
+  }
 `;
 
 export const QuestionNumber = styled.span`

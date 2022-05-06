@@ -7,4 +7,8 @@ export const HeaderStyled = styled.header`
   display: flex;
   gap: 2%;
   align-items: center;
+
+  @media (max-width: 600px) {
+    justify-content: center;
+  }
 `;

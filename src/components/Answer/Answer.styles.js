@@ -21,4 +21,5 @@ export const AnswerInput = styled.input`
 
 export const AnswerLabel = styled.label`
   cursor: pointer;
+  user-select: none;
 `;

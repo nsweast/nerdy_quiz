@@ -21,6 +21,11 @@ export const FinishPageContainer = styled.div`
     margin: 0;
     padding: 20px;
   }
+
+  @media (max-height: 1000px) {
+    min-height: 700px;
+    box-shadow: 5px 5px 50px ${ALL_COLORS.purpleGrey};
+  }
 `;
 
 export const ShowWrongAnswersButton = styled.div`
@@ -55,6 +60,11 @@ export const WrongAnswerBlock = styled.div`
     text-align: center;
     margin: 0;
     padding: 5px;
+  }
+
+  @media (max-height: 1000px) {
+    width: 80%;
+    padding: 10px;
   }
 `;
 
