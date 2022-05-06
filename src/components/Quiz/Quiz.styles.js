@@ -24,7 +24,7 @@ export const QuizBlock = styled.section`
     text-align: center;
   }
 
-  @media (max-width: 600px) {
+  @media (max-width: 900px) {
     flex: 0 1 250px;
     height: 300px;
   }

@@ -9,7 +9,7 @@ export const HomeContainer = styled.div`
 
   margin-top: 20px;
 
-  @media (max-width: 600px) {
+  @media (max-width: 900px) {
     justify-content: center;
   }
 `;
