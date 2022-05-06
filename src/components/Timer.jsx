@@ -15,7 +15,10 @@ const Timer = ({ timer, active }) => {
       clearInterval(interval);
     }
 
-    return () => clearInterval(interval);
+    return () => {
+      clearInterval(interval);
+      setCurrentTimer(0);
+    };
   }, [active, setCurrentTimer]);
 
   return (
